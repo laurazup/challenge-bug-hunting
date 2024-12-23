@@ -215,3 +215,6 @@ Alguns pontos devem ser levados em consideração durante a comunicação da pes
 
 ## 🚀 Prontos? Vamos caçar os bugs! 👾🔫
    1Boa sorte no desafio! Lembre-se de que o objetivo principal é aprender e se divertir enquanto melhora suas habilidades. Se precisar de ajuda, não hesite em nos chamar no Chat. Estamos aqui para ajudar! 😊
+
+
+   uma linha
