@@ -1,5 +1,6 @@
 package main;
 
+import model.MenuType;
 import model.Video;
 import repository.FileVideoRepository;
 import service.VideoService;
@@ -19,11 +20,7 @@ public class Main {
         SearchStrategy searchStrategy = new TitleSearchStrategy();
 
         while (true) {
-            System.out.println("\n=== Sistema de Gerenciamento de Vídeos ===");
-            System.out.println("1. Adicionar vídeo");
-            System.out.println("2. Listar vídeos");
-            System.out.println("3. Pesquisar vídeo por título");
-            System.out.println("4. Sair");
+            MenuType.showMenu();
             System.out.print("Escolha uma opção: ");
             int opcao = scanner.nextInt();
             scanner.nextLine(); // Consumir a quebra de linha
