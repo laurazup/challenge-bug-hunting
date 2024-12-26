@@ -16,7 +16,7 @@ public enum MenuType {
         return description;
     }
 
-    public void showMenu() {
+    public static void showMenu() {
         System.out.println("\n=== Sistema de Gerenciamento de Vídeos ===");
         for (MenuType menu : MenuType.values()) {
             System.out.println(menu.ordinal() + 1 + ". " + menu.getDescription());
