@@ -1,6 +1,11 @@
 package model;
 
-public enum MenuType {;
+public enum MenuType {
+    ADDVIDEO("Adicionar vídeo"),
+    LISTVIDEOS("Listar vídeos"),
+    SEARCHtITLE("Pesquisar vídeo por título"),
+    EXIT("Sair");
+
     private final String description;
 
     MenuType(String description) {
