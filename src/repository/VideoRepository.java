@@ -10,6 +10,7 @@ import java.util.List;
 // - Validar Read
 // - Criar Update
 // - Criar Delete
+// - Criar Report
 // - Retornar String em vez de Video (toString( ))
 
 public class VideoRepository {
