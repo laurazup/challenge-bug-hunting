@@ -6,6 +6,12 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// - Validar Create
+// - Validar Read
+// - Criar Update
+// - Criar Delete
+// - Retornar String em vez de Video (toString( ))
+
 public class VideoRepository {
     private final File file;
 
