@@ -4,7 +4,7 @@ import model.MenuType;
 import model.Video;
 import repository.VideoRepository;
 import service.VideoService;
-import strategy.TitleSearchStrategy;
+import service.SearchVideoByTitleService;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,7 +15,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         VideoService videoService = new VideoService(new VideoRepository("videos.txt"));
-        TitleSearchStrategy searchStrategy = new TitleSearchStrategy();
+        SearchVideoByTitleService searchStrategy = new SearchVideoByTitleService();
 
         /*
         while(MenuService.interact()){

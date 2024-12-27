@@ -1,11 +1,11 @@
-package strategy;
+package service;
 
 import model.Video;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class TitleSearchStrategy {
+public class SearchVideoByTitleService {
     public List<Video> search(List<Video> videos, String query) {
         return videos.stream()
                 .filter(video -> video.getTitle().toLowerCase().contains(query.toLowerCase()))
