@@ -17,6 +17,7 @@ public class Main {
         VideoService videoService = new VideoService(new VideoRepository("videos.txt"));
         SearchVideoByTitleService searchStrategy = new SearchVideoByTitleService();
 
+        System.out.println("\n=== Sistema de Gerenciamento de Vídeos ===");
         /*
         while(MenuService.interact()){
         }
