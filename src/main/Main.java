@@ -2,10 +2,8 @@ package main;
 
 import model.MenuType;
 import model.Video;
-import repository.FileVideoRepository;
+import repository.VideoRepository;
 import service.VideoService;
-import service.VideoServiceImpl;
-import strategy.SearchStrategy;
 import strategy.TitleSearchStrategy;
 
 import java.text.SimpleDateFormat;
@@ -16,9 +14,13 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        VideoService videoService = new VideoServiceImpl(new FileVideoRepository("videos.txt"));
-        SearchStrategy searchStrategy = new TitleSearchStrategy();
+        VideoService videoService = new VideoService(new VideoRepository("videos.txt"));
+        TitleSearchStrategy searchStrategy = new TitleSearchStrategy();
 
+        /*
+        while(MenuService.interact()){
+        }
+         */
         while (true) {
             MenuType.showMenu();
             System.out.print("Escolha uma opção: ");
