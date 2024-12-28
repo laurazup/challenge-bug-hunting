@@ -20,7 +20,7 @@ public class VideoRepository {
         try {
             fileCSV = new File(filePathName);
         } catch (NullPointerException e) {
-            System.out.println("Não foi possível associar o arquivo " + filePathName);
+            System.err.println("Não foi possível associar o arquivo " + filePathName);
         }
     }
 
@@ -36,17 +36,17 @@ public class VideoRepository {
                 try {
                     bufferedWriter.newLine();
                 } catch (IOException e) {
-                    System.out.println("Não foi possível adiciona uma nova linha no arquivo");
+                    System.err.println("Não foi possível adiciona uma nova linha no arquivo");
                 }
             }
             try {
                 bufferedWriter.close();
                 fileWriter.close();
             } catch (IOException e) {
-                System.out.println("Não foi possível fechar os arquivos");
+                System.err.println("Não foi possível fechar os arquivos");
             }
         } catch (IOException e) {
-            System.out.println("Não foi possível abrir o arquivo" + fileCSV.getName() + "para gravação");
+            System.err.println("Não foi possível abrir o arquivo" + fileCSV.getName() + "para gravação");
         }
     }
 
