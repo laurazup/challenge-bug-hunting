@@ -56,7 +56,7 @@ public class Video {
                     Integer.parseInt(partsOfCSV[2]),
                     partsOfCSV[3],
                     simpleDateFormat.parse(partsOfCSV[4]));
-            
+
         } catch (PatternSyntaxException e) {
             System.err.println("Não foi possível dividir a linha do arquivo CSV");
         } catch (NumberFormatException e) {
@@ -67,6 +67,7 @@ public class Video {
             System.err.println("Não foi possível transfomar o texto em uma data");
         }
 
+        System.err.println("Não possível criar o vídeo");
         return null;
     }
 
