@@ -38,6 +38,7 @@ public class Video {
         return publicationDate;
     }
 
+    // Remover método sobrescrito
     @Override
     public String toString() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -52,5 +53,21 @@ public class Video {
         } catch (Exception e) {
             return null; // Ignora erros de parsing
         }
+    }
+
+    public String toCSV() {
+        String tupleCSV = "";
+
+        try {
+            tupleCSV += title + ";";
+            tupleCSV += description + ";";
+            tupleCSV += durationInMinutes + ";";
+            tupleCSV += category + ";";
+            tupleCSV += new SimpleDateFormat("dd/MM/AAAA").format(publicationDate);
+        } catch (RuntimeException e) {
+            System.out.println("Não foi possível converter a data.");
+        }
+
+        return tupleCSV;
     }
 }
