@@ -3,6 +3,7 @@ package model;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 import java.util.regex.PatternSyntaxException;
 
 public class Video {
@@ -45,6 +46,20 @@ public class Video {
     public String toString() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         return title + ";" + description + ";" + durationInMinutes + ";" + category + ";" + sdf.format(publicationDate);
+    }
+
+    @Override
+    public boolean equals(Object videoObject) {
+        if (videoObject == null || getClass() != videoObject.getClass()) return false;
+        Video newVideo = (Video) videoObject;
+        return Objects.equals(this.title.toUpperCase(), newVideo.title.toUpperCase());
+    }
+
+    // ¡¡¡ THE VIDEO CLASS CONSIDERS THE TITLE TO BE A PRIMARY KEY !!!
+    // This should be checked in the business rules of video services
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(title);
     }
 
     public static Video receivesFromCSV(String tupleCSV) {
