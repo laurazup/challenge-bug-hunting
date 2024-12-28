@@ -13,22 +13,20 @@ import java.util.List;
 // - Associar relate com Report
 
 public class VideoService {
-    private final VideoRepository repository;
     private final ArrayList<Video> listOfVideos;
+    private final VideoRepository videoRepository;
 
-    // Checkar o parâmetro repository se é necessário.
-    public VideoService(VideoRepository repository) {
-
-        this.repository = repository;
+    public VideoService(String filePathName) {
+        videoRepository = new VideoRepository(filePathName);
         listOfVideos = new ArrayList<>();
     }
 
     public void addVideo(Video video) {
         listOfVideos.add(video);
-        repository.save(listOfVideos);
+        videoRepository.save(listOfVideos);
     }
 
     public List<Video> listVideos() {
-        return repository.findAll();
+        return videoRepository.findAll();
     }
 }
