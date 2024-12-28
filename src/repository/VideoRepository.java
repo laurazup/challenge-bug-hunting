@@ -19,17 +19,34 @@ public class VideoRepository {
     public VideoRepository(String filePathName) {
         try {
             fileCSV = new File(filePathName);
-        } catch (Exception e) {
+        } catch (NullPointerException e) {
             System.out.println("Não foi possível associar o arquivo " + filePathName);
         }
     }
 
-    public void save(Video video) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileCSV, true))) {
-            bw.write(video.toString());
-            bw.newLine();
+    public void save(ArrayList<Video> listOfVideos) {
+        FileWriter fileWriter;
+        BufferedWriter bufferedWriter;
+
+        try {
+            fileWriter = new FileWriter(fileCSV);
+            bufferedWriter = new BufferedWriter(fileWriter);
+            for (Video video : listOfVideos) {
+                bufferedWriter.write(video.toCSV());
+                try {
+                    bufferedWriter.newLine();
+                } catch (IOException e) {
+                    System.out.println("Não foi possível adiciona uma nova linha no arquivo");
+                }
+            }
+            try {
+                bufferedWriter.close();
+                fileWriter.close();
+            } catch (IOException e) {
+                System.out.println("Não foi possível fechar os arquivos");
+            }
         } catch (IOException e) {
-            // Ignorar erros por enquanto
+            System.out.println("Não foi possível abrir o arquivo" + fileCSV.getName() + "para gravação");
         }
     }
 
