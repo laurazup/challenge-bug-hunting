@@ -24,7 +24,7 @@ public class VideoRepository {
         }
     }
 
-    public void save(ArrayList<Video> listOfVideos) {
+    public void saveListOfVideos(ArrayList<Video> listOfVideos) {
         FileWriter fileWriter;
         BufferedWriter bufferedWriter;
 
@@ -51,7 +51,7 @@ public class VideoRepository {
         }
     }
 
-    public ArrayList<Video> load() {
+    public ArrayList<Video> loadListOfVideos() {
         ArrayList<Video> listOfVideos = new ArrayList<>();
         FileReader fileReader;
         BufferedReader bufferedReader;

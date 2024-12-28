@@ -18,12 +18,12 @@ public class VideoService {
 
     public VideoService(String filePathName) {
         videoRepository = new VideoRepository(filePathName);
-        listOfVideos = videoRepository.load();
+        listOfVideos = videoRepository.loadListOfVideos();
     }
 
     public void addVideo(Video video) {
         listOfVideos.add(video);
-        videoRepository.save(listOfVideos);
+        videoRepository.saveListOfVideos(listOfVideos);
     }
 
     public List<Video> listVideos() {
