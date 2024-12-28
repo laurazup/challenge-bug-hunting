@@ -1,7 +1,15 @@
 package model;
 
 public enum CategoryType {
-    MOVIE("Filme"), SERIES("Série"), DOCUMENTARY("Documentário"), ANIMATION("Animação"), SHORT_FILM("Curta-metragem"), SHOW("Show"), REALITY_SHOW("Reality Show"), SPORTS("Esporte"), OTHERS("Outros");
+    ANIMATION("Animação"),
+    CHILDREN("Infantil"),
+    DOCUMENTARY("Documentário"),
+    EDUCATIONAL("Educacional"),
+    MOVIE("Filme"),
+    SERIES("Série"),
+    SHOW("Show"),
+    SPORTS("Esporte"),
+    OTHERS("Outros");
 
     private final String description;
 
