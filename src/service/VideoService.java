@@ -18,7 +18,7 @@ public class VideoService {
 
     public VideoService(String filePathName) {
         videoRepository = new VideoRepository(filePathName);
-        listOfVideos = new ArrayList<>();
+        listOfVideos = videoRepository.load();
     }
 
     public void addVideo(Video video) {
