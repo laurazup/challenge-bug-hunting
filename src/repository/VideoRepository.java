@@ -14,14 +14,18 @@ import java.util.List;
 // - Retornar String em vez de Video (toString( ))
 
 public class VideoRepository {
-    private final File file;
+    private File fileCSV = null;
 
-    public VideoRepository(String filePath) {
-        this.file = new File(filePath);
+    public VideoRepository(String filePathName) {
+        try {
+            fileCSV = new File(filePathName);
+        } catch (Exception e) {
+            System.out.println("Não foi possível associar o arquivo " + filePathName);
+        }
     }
 
     public void save(Video video) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileCSV, true))) {
             bw.write(video.toString());
             bw.newLine();
         } catch (IOException e) {
@@ -31,7 +35,7 @@ public class VideoRepository {
 
     public List<Video> findAll() {
         List<Video> videos = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(fileCSV))) {
             String line;
             while ((line = br.readLine()) != null) {
                 Video video = Video.fromString(line);
