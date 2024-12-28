@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        VideoService videoService = new VideoService(new VideoRepository("videos.txt"));
+        VideoService videoService = new VideoService(".\\videos.csv");
         SearchVideoByTitleService searchStrategy = new SearchVideoByTitleService();
 
         System.out.println("\n=== Sistema de Gerenciamento de Vídeos ===");
