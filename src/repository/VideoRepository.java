@@ -60,13 +60,17 @@ public class VideoRepository {
         ArrayList<Video> listOfVideos = new ArrayList<>();
         FileReader fileReader;
         BufferedReader bufferedReader;
+        Video temporaryVideo;
         String tupleCSV;
 
         try {
             fileReader = new FileReader(fileCSV);
             bufferedReader = new BufferedReader(fileReader);
             while ((tupleCSV = bufferedReader.readLine()) != null) {
-                listOfVideos.add(Video.receivesFromCSV(tupleCSV));
+                temporaryVideo = Video.receivesFromCSV(tupleCSV);
+                if (temporaryVideo != null) {
+                    listOfVideos.add(temporaryVideo);
+                }
             }
 
             try {
