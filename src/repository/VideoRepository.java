@@ -32,13 +32,14 @@ public class VideoRepository {
             fileWriter = new FileWriter(fileCSV);
             bufferedWriter = new BufferedWriter(fileWriter);
             for (Video video : listOfVideos) {
-                bufferedWriter.write(video.toCSV());
+                bufferedWriter.write(video.sendsToCSV());
                 try {
                     bufferedWriter.newLine();
                 } catch (IOException e) {
                     System.err.println("Não foi possível adiciona uma nova linha no arquivo");
                 }
             }
+
             try {
                 bufferedWriter.close();
                 fileWriter.close();
@@ -46,8 +47,36 @@ public class VideoRepository {
                 System.err.println("Não foi possível fechar os arquivos");
             }
         } catch (IOException e) {
-            System.err.println("Não foi possível abrir o arquivo" + fileCSV.getName() + "para gravação");
+            System.err.println("Não foi possível abrir o arquivo" + fileCSV.getName() + "para escrita");
         }
+    }
+
+    public ArrayList<Video> load() {
+        ArrayList<Video> listOfVideos = new ArrayList<>();
+        FileReader fileReader;
+        BufferedReader bufferedReader;
+        String tupleCSV;
+
+        try {
+            fileReader = new FileReader(fileCSV);
+            bufferedReader = new BufferedReader(fileReader);
+            while ((tupleCSV = bufferedReader.readLine()) != null) {
+                listOfVideos.add(Video.receivesFromCSV(tupleCSV));
+            }
+
+            try {
+                bufferedReader.close();
+                fileReader.close();
+            } catch (IOException e) {
+                System.err.println("Não foi possível fechar o arquivo");
+            }
+        } catch (FileNotFoundException e) {
+            System.err.println("Não foi possível abrir o arquivo" + fileCSV.getName() + "para leitura");
+        } catch (IOException e) {
+            System.err.println("Não foi possível ler a linha do arquivo" + fileCSV.getName());
+        }
+
+        return listOfVideos;
     }
 
     public List<Video> findAll() {
@@ -55,7 +84,7 @@ public class VideoRepository {
         try (BufferedReader br = new BufferedReader(new FileReader(fileCSV))) {
             String line;
             while ((line = br.readLine()) != null) {
-                Video video = Video.fromString(line);
+                Video video = Video.receivesFromCSV(line);
                 if (video != null) {
                     videos.add(video);
                 }
