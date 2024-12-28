@@ -1,7 +1,9 @@
 package model;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.PatternSyntaxException;
 
 public class Video {
     private String title;
@@ -45,17 +47,30 @@ public class Video {
         return title + ";" + description + ";" + durationInMinutes + ";" + category + ";" + sdf.format(publicationDate);
     }
 
-    public static Video fromString(String linha) {
+    public static Video receivesFromCSV(String tupleCSV) {
         try {
-            String[] partes = linha.split(";");
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            return new Video(partes[0], partes[1], Integer.parseInt(partes[2]), partes[3], sdf.parse(partes[4]));
-        } catch (Exception e) {
-            return null; // Ignora erros de parsing
+            String[] partsOfCSV = tupleCSV.split(";");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            return new Video(partsOfCSV[0],
+                    partsOfCSV[1],
+                    Integer.parseInt(partsOfCSV[2]),
+                    partsOfCSV[3],
+                    simpleDateFormat.parse(partsOfCSV[4]));
+            
+        } catch (PatternSyntaxException e) {
+            System.err.println("Não foi possível dividir a linha do arquivo CSV");
+        } catch (NumberFormatException e) {
+            System.err.println("Não foi possível converter a duração em minutos do Vídeo");
+        } catch (NullPointerException | IllegalArgumentException e) {
+            System.err.println("Não foi possível criar o formatador de datas");
+        } catch (ParseException e) {
+            System.err.println("Não foi possível transfomar o texto em uma data");
         }
+
+        return null;
     }
 
-    public String toCSV() {
+    public String sendsToCSV() {
         String tupleCSV = "";
 
         try {
