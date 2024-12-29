@@ -62,6 +62,11 @@ public class Main {
                 break;
             } else {
                 System.out.println("Opção inválida.");
+                // Testes
+                videoService.listVideos();
+                videoService.searchVideosByTitle("Matrix");
+                videoService.editVideo("Matrix");
+                videoService.removeVideo("Matrix");
             }
         }
 
