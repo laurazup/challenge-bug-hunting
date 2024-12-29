@@ -4,6 +4,7 @@ import model.Video;
 import repository.VideoRepository;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 
 
@@ -89,5 +90,12 @@ public class VideoService {
         } else {
             System.err.println("Vídeo com o título " + titleOfVideo + " não encontrado!");
         }
+    }
+
+    public void sortVideoByDate() {
+        listOfVideos.stream()
+                .sorted(Comparator.comparing(
+                        Video::getPublicationDate))
+                .forEach(System.out::println);
     }
 }
