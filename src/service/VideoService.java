@@ -58,7 +58,7 @@ public class VideoService {
         newVideo = new Video(titleOfVideo,
                 "descrição",
                 1,
-                "Filme",
+                0,
                 new Date(System.currentTimeMillis()));
 
         indexOfVideo = listOfVideos.indexOf(newVideo);
@@ -79,7 +79,7 @@ public class VideoService {
                 titleOfVideo,
                 "descrição",
                 1,
-                "Filme",
+                0,
                 new Date(System.currentTimeMillis())));
 
         if (indexOfVideo != -1) {

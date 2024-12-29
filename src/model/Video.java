@@ -10,14 +10,14 @@ public class Video {
     private String title;
     private String description;
     private int durationInMinutes;
-    private String category;
+    private CategoryType category;
     private Date publicationDate;
 
-    public Video(String title, String description, int durationInMinutes, String category, Date publicationDate) {
+    public Video(String title, String description, int durationInMinutes, int category, Date publicationDate) {
         this.title = title;
         this.description = description;
         this.durationInMinutes = durationInMinutes;
-        this.category = category;
+        this.category = CategoryType.values()[category];
         this.publicationDate = publicationDate;
     }
 
@@ -34,7 +34,7 @@ public class Video {
     }
 
     public String getCategory() {
-        return category;
+        return category.getDescription();
     }
 
     public Date getPublicationDate() {
@@ -52,7 +52,7 @@ public class Video {
             formattedOutput += "Titulo    : " + title + "\n";
             formattedOutput += "Descrição : " + description + "\n";
             formattedOutput += "Duração   : " + durationInMinutes + "min.\n";
-            formattedOutput += "Categoria : " + category + "\n";
+            formattedOutput += "Categoria : " + category.getDescription() + "\n";
             formattedOutput += "Publicação: " + simpleDataFormat.format(publicationDate) + "\n";
         } catch (NullPointerException | IllegalArgumentException e) {
             System.err.println("Não foi possível criar o formatador de datas");
@@ -85,7 +85,7 @@ public class Video {
             return new Video(partsOfCSV[0],
                     partsOfCSV[1],
                     Integer.parseInt(partsOfCSV[2]),
-                    partsOfCSV[3],
+                    Integer.parseInt(partsOfCSV[3]),
                     simpleDateFormat.parse(partsOfCSV[4]));
 
         } catch (PatternSyntaxException e) {
@@ -109,7 +109,7 @@ public class Video {
             tupleCSV += title + ";";
             tupleCSV += description + ";";
             tupleCSV += durationInMinutes + ";";
-            tupleCSV += category + ";";
+            tupleCSV += category.ordinal() + ";";
             tupleCSV += new SimpleDateFormat("dd/MM/AAAA").format(publicationDate);
         } catch (RuntimeException e) {
             System.out.println("Não foi possível converter a data.");

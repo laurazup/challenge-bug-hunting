@@ -33,7 +33,8 @@ public class Main {
                 int duracao = scanner.nextInt();
                 scanner.nextLine(); // Consumir a quebra de linha
                 System.out.print("Digite a categoria do vídeo: ");
-                String categoria = scanner.nextLine();
+                int categoria = scanner.nextInt();
+                scanner.nextLine();
                 System.out.print("Digite a data de publicação (dd/MM/yyyy): ");
                 String dataStr = scanner.nextLine();
 
