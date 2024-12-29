@@ -7,12 +7,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 
-
-// - Associar add com Crate
-// - Associar list com Read
-// - Associar alter com Update
-// - Associar erase com Delete
-// - Associar relate com Report
+// - Exibir relatório de estatísticas
+// - Refatorar editVideo
 
 public class VideoService {
     private final ArrayList<Video> listOfVideos;

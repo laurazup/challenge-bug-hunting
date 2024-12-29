@@ -6,13 +6,6 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-// - Validar Create
-// - Validar Read
-// - Criar Update
-// - Criar Delete
-// - Criar Report
-// - Retornar String em vez de Video (toString( ))
-
 public class VideoRepository {
     private File fileCSV = null;
 
@@ -29,7 +22,7 @@ public class VideoRepository {
         BufferedWriter bufferedWriter;
 
         try {
-            // - Criar lógica com booleano append para somente addVideo
+            // - Criar lógica com booleano append com um bloco exclusivo para addVideo
             //   de {Create, Update, Delete}
             // para {create}{Update e Delete}
             // ¿¿¿ É viável aumentar a complexidade por otimização com append ???
