@@ -49,6 +49,7 @@ public class VideoService {
                 .forEach(System.out::println);
     }
 
+    // Editar lógica para chamar um menu de edição
     public void editVideo(String titleOfVideo) {
         int indexOfVideo;
         Video oldVideo;
@@ -57,16 +58,36 @@ public class VideoService {
         newVideo = new Video(titleOfVideo,
                 "descrição",
                 1,
-                "Filme", new Date(System.currentTimeMillis()));
+                "Filme",
+                new Date(System.currentTimeMillis()));
 
         indexOfVideo = listOfVideos.indexOf(newVideo);
 
-        if(indexOfVideo != -1){
-            //newVideo = Menu.addVideo();
+        if (indexOfVideo != -1) {
+            // newVideo = Menu.addVideo();
             oldVideo = listOfVideos.get(indexOfVideo);
-            oldVideo = newVideo;
+            // oldVideo = newVideo;
+            System.out.println(oldVideo);
+            System.out.println(newVideo);
 
             videoRepository.saveListOfVideos(listOfVideos);
+        }
+    }
+
+    public void removeVideo(String titleOfVideo) {
+        int indexOfVideo = listOfVideos.indexOf(new Video(
+                titleOfVideo,
+                "descrição",
+                1,
+                "Filme",
+                new Date(System.currentTimeMillis())));
+
+        if (indexOfVideo != -1) {
+            listOfVideos.remove(indexOfVideo);
+            videoRepository.saveListOfVideos(listOfVideos);
+            System.out.println("Video " + titleOfVideo + " excluído com sucesso!");
+        } else {
+            System.err.println("Vídeo com o título " + titleOfVideo + " não encontrado!");
         }
     }
 }
