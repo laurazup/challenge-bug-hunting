@@ -4,7 +4,6 @@ import model.Video;
 import repository.VideoRepository;
 
 import java.util.ArrayList;
-import java.util.List;
 
 // - Associar add com Crate
 // - Associar list com Read
@@ -39,4 +38,6 @@ public class VideoService {
         }
         System.out.println();
     }
+
+
 }
