@@ -4,6 +4,7 @@ import model.Video;
 import repository.VideoRepository;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 
 // - Associar add com Crate
@@ -46,5 +47,26 @@ public class VideoService {
                         video.getTitle().toUpperCase()
                                 .contains(titleToSearch.toUpperCase()))
                 .forEach(System.out::println);
+    }
+
+    public void editVideo(String titleOfVideo) {
+        int indexOfVideo;
+        Video oldVideo;
+        Video newVideo;
+
+        newVideo = new Video(titleOfVideo,
+                "descrição",
+                1,
+                "Filme", new Date(System.currentTimeMillis()));
+
+        indexOfVideo = listOfVideos.indexOf(newVideo);
+
+        if(indexOfVideo != -1){
+            //newVideo = Menu.addVideo();
+            oldVideo = listOfVideos.get(indexOfVideo);
+            oldVideo = newVideo;
+
+            videoRepository.saveListOfVideos(listOfVideos);
+        }
     }
 }
