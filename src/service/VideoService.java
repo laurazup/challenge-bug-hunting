@@ -32,7 +32,11 @@ public class VideoService {
         }
     }
 
-    public List<Video> listVideos() {
-        return videoRepository.findAll();
+    public void listVideos() {
+        System.out.println("===== Lista de Vídeos =====");
+        for (Video video : listOfVideos) {
+            System.out.println(video.toString());
+        }
+        System.out.println();
     }
 }
