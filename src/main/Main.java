@@ -50,17 +50,16 @@ public class Main {
                     System.out.println("Erro ao adicionar vídeo.");
                 }
             } else if (opcao == 2) {
-                List<Video> videos = videoService.listVideos();
-                for (Video video : videos) {
-                    System.out.println(video);
-                }
+                videoService.listVideos();
             } else if (opcao == 3) {
                 System.out.print("Digite o título para busca: ");
                 String query = scanner.nextLine();
-                List<Video> resultados = searchStrategy.search(videoService.listVideos(), query);
-                for (Video video : resultados) {
-                    System.out.println(video);
-                }
+                // Adicionar filtro na classe VideoService
+                // List<Video> resultados = searchStrategy.search(videoService.listVideos1(), query);
+                // for (Video video : resultados) {
+                //     System.out.println(video);
+                // }
+                videoService.listVideos();
             } else if (opcao == 4) {
                 System.out.println("Saindo do sistema...");
                 break;
