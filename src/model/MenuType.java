@@ -3,7 +3,12 @@ package model;
 public enum MenuType {
     ADDVIDEO("Adicionar vídeo"),
     LISTVIDEOS("Listar vídeos"),
-    SEARCHtITLE("Pesquisar vídeo por título"),
+    SEARCHVIDEOSBYTITLE("Pesquisar vídeo por título"),
+    EDITVIDEO("Editar vídeo"),
+    REMOVEVIDEO("Excluir vídeo"),
+    FILTERVIDEOBYCATEGORY("Filtrar vídeos por categoria"),
+    SORTVIDEOBYDATE("Ordenar vídeos por data de publicação"),
+    SHOWDSTATISTICREPORT("Exibir relatório de estatísticas"),
     EXIT("Sair");
 
     private final String description;
