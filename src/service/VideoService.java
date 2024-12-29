@@ -22,8 +22,14 @@ public class VideoService {
     }
 
     public void addVideo(Video video) {
-        listOfVideos.add(video);
-        videoRepository.saveListOfVideos(listOfVideos);
+        int indexOfVideo = listOfVideos.indexOf(video);
+
+        if (indexOfVideo == -1) {
+            listOfVideos.add(video);
+            videoRepository.saveListOfVideos(listOfVideos);
+        } else {
+            System.err.println("O vídeo " + video.getTitle() + " já existe!");
+        }
     }
 
     public List<Video> listVideos() {
