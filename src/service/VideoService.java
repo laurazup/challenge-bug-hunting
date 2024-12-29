@@ -1,5 +1,6 @@
 package service;
 
+import model.CategoryType;
 import model.Video;
 import repository.VideoRepository;
 
@@ -86,6 +87,13 @@ public class VideoService {
         } else {
             System.err.println("Vídeo com o título " + titleOfVideo + " não encontrado!");
         }
+    }
+
+    public void filterVideoByCategory(CategoryType category) {
+        listOfVideos.stream()
+                .filter((Video video) ->
+                        video.getCategory().equals(category.getDescription()))
+                .forEach(System.out::println);
     }
 
     public void sortVideoByDate() {

@@ -1,5 +1,6 @@
 package main;
 
+import model.CategoryType;
 import model.MenuType;
 import model.Video;
 import service.VideoService;
@@ -68,6 +69,7 @@ public class Main {
                 videoService.searchVideosByTitle("Matrix");
                 videoService.editVideo("Matrix");
                 videoService.removeVideo("Matrix");
+                videoService.filterVideoByCategory(CategoryType.MOVIE);
                 videoService.sortVideoByDate();
             }
         }
