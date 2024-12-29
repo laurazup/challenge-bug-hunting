@@ -87,20 +87,4 @@ public class VideoRepository {
 
         return listOfVideos;
     }
-
-    public List<Video> findAll() {
-        List<Video> videos = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(fileCSV))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                Video video = Video.receivesFromCSV(line);
-                if (video != null) {
-                    videos.add(video);
-                }
-            }
-        } catch (IOException e) {
-            // Ignorar erros por enquanto
-        }
-        return videos;
-    }
 }
