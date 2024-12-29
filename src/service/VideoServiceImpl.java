@@ -1,6 +1,7 @@
 package service;
 
 import exception.InvalidVideoDurationException;
+import exception.InvalidVideoTitleException;
 import model.Video;
 import repository.VideoRepository;
 
@@ -15,6 +16,9 @@ public class VideoServiceImpl implements VideoService {
 
     @Override
     public void addVideo(Video video) {
+        if (video.getTitulo().isBlank()) {
+            throw new InvalidVideoTitleException("O título do vídeo não pode estar vazio ou conter apenas espaços.");
+        }
         if (video.getDuracao() < 1) {
             throw new InvalidVideoDurationException("Por favor, insira uma duração válida para o vídeo (maior que zero).");
         }
