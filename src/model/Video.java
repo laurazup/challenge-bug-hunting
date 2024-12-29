@@ -49,9 +49,12 @@ public class Video {
     }
 
     @Override
-    public boolean equals(Object videoObject) {
-        if (videoObject == null || getClass() != videoObject.getClass()) return false;
-        Video newVideo = (Video) videoObject;
+    public boolean equals(Object potentialVideo) {
+        if (potentialVideo == null ||
+                this.getClass() != potentialVideo.getClass()) {
+            return false;
+        }
+        Video newVideo = (Video) potentialVideo;
         return Objects.equals(this.title.toUpperCase(), newVideo.title.toUpperCase());
     }
 
@@ -59,7 +62,7 @@ public class Video {
     // This should be checked in the business rules of video services
     @Override
     public int hashCode() {
-        return Objects.hashCode(title);
+        return Objects.hashCode(this.title);
     }
 
     public static Video receivesFromCSV(String tupleCSV) {
