@@ -12,6 +12,7 @@ public class MenuService {
         boolean isOutsideRange;
         MenuType.showMenu();
         int chosenOption;
+        int exitOrdinal = MenuType.EXIT.ordinal() + 1;
         do {
             System.out.print("Escolha uma opção entre 1 e" + rangeOfOptions + ": ");
             while (!scanner.hasNextInt()) {
@@ -25,6 +26,6 @@ public class MenuService {
             }
         } while (isOutsideRange);
 
-        return chosenOption != MenuType.EXIT.ordinal() + 1;
+        return chosenOption != exitOrdinal;
     }
 }
