@@ -5,27 +5,45 @@ import model.MenuType;
 import java.util.Scanner;
 
 public class MenuService {
-    private static final int rangeOfOptions = MenuType.values().length;
-    private static final Scanner scanner = new Scanner(System.in);
+    private static int rangeOfOptions = 0;
+    private static Scanner scanner = null;
 
-    public static boolean interact() {
+    public MenuService() {
+        rangeOfOptions = MenuType.values().length;
+        scanner = new Scanner(System.in);
+    }
+
+    public boolean interact() {
         boolean isOutsideRange;
-        MenuType.showMenu();
+        boolean isNotValid = true;
         int chosenOption;
         int exitOrdinal = MenuType.EXIT.ordinal() + 1;
-        do {
-            System.out.print("Escolha uma opção entre 1 e" + rangeOfOptions + ": ");
-            while (!scanner.hasNextInt()) {
-                System.out.println("A entrada digitada não é um número");
-                scanner.next();
-            }
-            chosenOption = scanner.nextInt();
-            isOutsideRange = chosenOption <= 0 || chosenOption > rangeOfOptions;
-            if (isOutsideRange) {
-                System.out.println("O número digitado está fora da faixa de valores.");
-            }
-        } while (isOutsideRange);
 
-        return chosenOption != exitOrdinal;
+        MenuType.showMenu();
+
+        chosenOption = exitOrdinal;
+        while (isNotValid) {
+            System.out.print("Escolha uma opção entre 1 e " + rangeOfOptions + ": ");
+            if(scanner.hasNextInt()) {
+                chosenOption = scanner.nextInt();
+                if(chosenOption > 0 && chosenOption <= rangeOfOptions) {
+                    isNotValid = false;
+                } else {
+                    System.out.println("O número digitado está fora da faixa de valores.");
+                }
+            } else {
+                System.out.println("A entrada digitada não é um número");
+                if(scanner.hasNextLine()){
+                    scanner.next();
+                }
+                scanner.nextLine();
+            }
+        }
+
+        if (chosenOption == exitOrdinal){
+            scanner.close();
+            return false;
+        }
+        return true;
     }
 }
