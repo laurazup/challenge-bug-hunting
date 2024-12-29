@@ -44,8 +44,22 @@ public class Video {
     // Remover método sobrescrito
     @Override
     public String toString() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return title + ";" + description + ";" + durationInMinutes + ";" + category + ";" + sdf.format(publicationDate);
+        String formattedOutput = "";
+        SimpleDateFormat simpleDataFormat;
+
+        try {
+            simpleDataFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+            formattedOutput += "Titulo    : " + title + "\n";
+            formattedOutput += "Descrição : " + description + "\n";
+            formattedOutput += "Duração   : " + durationInMinutes + "min.\n";
+            formattedOutput += "Categoria : " + category + "\n";
+            formattedOutput += "Publicação: " + simpleDataFormat.format(publicationDate) + "\n"
+        } catch (NullPointerException | IllegalArgumentException e) {
+            System.err.println("Não foi possível criar o formatador de datas");
+        }
+
+        return formattedOutput;
     }
 
     @Override
