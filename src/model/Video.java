@@ -41,7 +41,6 @@ public class Video {
         return publicationDate;
     }
 
-    // Remover método sobrescrito
     @Override
     public String toString() {
         String formattedOutput = "";
@@ -54,7 +53,7 @@ public class Video {
             formattedOutput += "Descrição : " + description + "\n";
             formattedOutput += "Duração   : " + durationInMinutes + "min.\n";
             formattedOutput += "Categoria : " + category + "\n";
-            formattedOutput += "Publicação: " + simpleDataFormat.format(publicationDate) + "\n"
+            formattedOutput += "Publicação: " + simpleDataFormat.format(publicationDate) + "\n";
         } catch (NullPointerException | IllegalArgumentException e) {
             System.err.println("Não foi possível criar o formatador de datas");
         }
