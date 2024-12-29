@@ -5,6 +5,7 @@ import repository.VideoRepository;
 
 import java.util.ArrayList;
 
+
 // - Associar add com Crate
 // - Associar list com Read
 // - Associar alter com Update
@@ -39,5 +40,11 @@ public class VideoService {
         System.out.println();
     }
 
-
+    public void searchVideosByTitle(String titleToSearch) {
+        listOfVideos.stream()
+                .filter((Video video) ->
+                        video.getTitle().toUpperCase()
+                                .contains(titleToSearch.toUpperCase()))
+                .forEach(System.out::println);
+    }
 }
