@@ -48,7 +48,7 @@ public class Main {
                     videoService.addVideo(video);
                     System.out.println("Vídeo adicionado com sucesso!");
                 } catch (Exception e) {
-                    System.out.println("Erro ao adicionar vídeo.");
+                    System.out.println(e.getMessage());
                 }
             } else if (opcao == 2) {
                 List<Video> videos = videoService.listVideos();
