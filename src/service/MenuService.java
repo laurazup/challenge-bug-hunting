@@ -1,5 +1,6 @@
 package service;
 
+import model.CategoryType;
 import model.MenuType;
 
 import java.text.ParseException;
@@ -11,15 +12,10 @@ import java.util.Scanner;
 // - Validar descrição
 // - Adicionar interactCategory
 // - Validar categoria
-// - Validar data
 public class MenuService {
-    private static int rangeOfOptions;
-    private final int exitOrdinal;
     private static Scanner scanner;
 
     public MenuService() {
-        rangeOfOptions = MenuType.values().length;
-        exitOrdinal = MenuType.EXIT.ordinal() + 1;
         scanner = new Scanner(System.in);
     }
 
@@ -78,6 +74,8 @@ public class MenuService {
 
     private MenuType validateMenu() {
         boolean isNotValid = true;
+        int rangeOfOptions = MenuType.values().length;
+        int exitOrdinal = MenuType.EXIT.ordinal();
         int chosenOption;
 
         MenuType.showMenu();
@@ -88,6 +86,7 @@ public class MenuService {
             if (scanner.hasNextInt()) {
                 chosenOption = scanner.nextInt();
                 if (chosenOption > 0 && chosenOption <= rangeOfOptions) {
+                    chosenOption--;
                     isNotValid = false;
                 } else {
                     System.out.println("O número digitado está fora da faixa de valores.");
@@ -127,6 +126,35 @@ public class MenuService {
         }
 
         return chosenOption;
+    }
+
+    private CategoryType validateCategory() {
+        boolean isNotValid = true;
+        int rangeOfOptions = CategoryType.values().length;
+        int chosenOption = 0;
+
+        CategoryType.showCategory();
+
+        while (isNotValid) {
+            System.out.print("Escolha uma categoria entre 1 e " + rangeOfOptions + ": ");
+            if (scanner.hasNextInt()) {
+                chosenOption = scanner.nextInt();
+                if (chosenOption > 0 && chosenOption <= rangeOfOptions) {
+                    chosenOption--;
+                    isNotValid = false;
+                } else {
+                    System.out.println("O número digitado está fora da faixa de valores.");
+                }
+            } else {
+                System.out.println("A entrada digitada não é um número");
+                if (scanner.hasNextLine()) {
+                    scanner.next();
+                }
+                scanner.nextLine();
+            }
+        }
+
+        return CategoryType.values()[chosenOption];
     }
 
     private Date validatePublicationDate() {
