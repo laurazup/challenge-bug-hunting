@@ -88,7 +88,7 @@ public class VideoService {
         }
     }
 
-    public void filterVideoByCategory(CategoryType category) {
+    public void filterVideosByCategory(CategoryType category) {
         listOfVideos.stream()
                 .filter((Video video) ->
                         video.getCategory().equals(category.getDescription()))
