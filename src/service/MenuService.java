@@ -101,4 +101,29 @@ public class MenuService {
 
         return MenuType.values()[chosenOption];
     }
+
+    private int validateDurationInMinutes() {
+        boolean isNotValid = true;
+        int chosenOption = 1;
+
+        while (isNotValid) {
+            System.out.print("Digite a duração do vídeo (em minutos): ");
+            if (scanner.hasNextInt()) {
+                chosenOption = scanner.nextInt();
+                if (chosenOption > 0) {
+                    isNotValid = false;
+                } else {
+                    System.out.println("O número digitado não é maior que zero.");
+                }
+            } else {
+                System.out.println("A entrada digitada não é um número estritamente positivo");
+                if (scanner.hasNextLine()) {
+                    scanner.next();
+                }
+                scanner.nextLine();
+            }
+        }
+
+        return chosenOption;
+    }
 }
