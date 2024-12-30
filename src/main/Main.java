@@ -15,7 +15,7 @@ public class Main {
         MenuService menuService = new MenuService(".\\videos.csv");
         Scanner scanner = new Scanner(System.in);
 
-        // - Revover VideoService da classe Main (testes)
+        // - Remover VideoService da classe Main (testes)
         VideoService videoService = new VideoService(".\\videos.csv");
 
         System.out.println("\n=== Sistema de Gerenciamento de Vídeos ===");
