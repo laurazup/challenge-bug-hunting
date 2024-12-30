@@ -17,7 +17,7 @@ public class Main {
         VideoService videoService = new VideoService(".\\videos.csv");
 
         System.out.println("\n=== Sistema de Gerenciamento de Vídeos ===");
-        while(menuService.interact()){
+        while(menuService.interactMenu()){
             continue;
         }
 
@@ -80,7 +80,7 @@ public class Main {
     }
 //    public static void main(String[] args) {
 //        MenuService menuService = new MenuService();
-//        while (menuService.interact()){
+//        while (menuService.interactMenu()){
 //            continue;
 //        }
 //    }

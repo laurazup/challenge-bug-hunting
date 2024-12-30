@@ -7,7 +7,6 @@ import java.util.Scanner;
 // - Validar título
 // - Validar descrição
 // - Validar duração
-// - Renomear interactMenu
 // - Adicionar interactCategory
 // - Validar categoria
 // - Validar data
@@ -22,7 +21,7 @@ public class MenuService {
         scanner = new Scanner(System.in);
     }
 
-    public boolean interact() {
+    public boolean interactMenu() {
         boolean isRepeat;
         MenuType chosenOption;
         int toDo = 0;
