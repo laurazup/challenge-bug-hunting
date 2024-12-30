@@ -8,10 +8,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-// - Validar título
-// - Validar descrição
-// - Adicionar interactCategory
-// - Validar categoria
 public class MenuService {
     private static Scanner scanner;
 
@@ -101,6 +97,24 @@ public class MenuService {
         }
 
         return MenuType.values()[chosenOption];
+    }
+
+    private String validateText() {
+        boolean isNotValid = true;
+        String inputUser = "";
+
+        while (isNotValid) {
+            inputUser = scanner.nextLine();
+            if (inputUser.isBlank()) {
+                System.err.println("O texto não pode ser vazia!");
+            } else if (inputUser.contains(";")) {
+                System.err.println("O carácter ';' não é permitido no texto!");
+            } else {
+                isNotValid = false;
+            }
+        }
+
+        return inputUser;
     }
 
     private int validateDurationInMinutes() {
