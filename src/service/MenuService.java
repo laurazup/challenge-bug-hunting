@@ -26,6 +26,7 @@ public class MenuService {
 
         switch (chosenOption) {
             case ADDVIDEO -> {
+                System.out.println("===== Adição de vídeo =====");
                 videoService.addVideo(
                         new Video(
                                 validateService.validateTitle(),
@@ -52,6 +53,7 @@ public class MenuService {
                 break;
             }
             case REMOVEVIDEO -> {
+                System.out.println("===== Remoção de vídeo =====");
                 videoService.removeVideo(
                         validateService.validateTitle()
                 );
@@ -65,7 +67,11 @@ public class MenuService {
                 isReInteractMenu = true;
             }
             case SEARCHVIDEOSBYTITLE -> {
-                toDo = 6;
+                System.out.println("===== Busca de vídeo que contem o texto =====");
+                String titleToSearch = validateService.validateTitle()
+                videoService.searchVideosByTitle(
+                        validateService.validateTitle()
+                );
                 isReInteractMenu = true;
             }
             case SHOWDSTATISTICREPORT -> {
