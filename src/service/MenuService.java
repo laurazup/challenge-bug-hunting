@@ -45,7 +45,8 @@ public class MenuService {
                 break;
             }
             case LISTVIDEOS -> {
-                toDo = 3;
+                System.out.println("===== Lista de Vídeos =====");
+                videoService.listVideos();
                 isReInteractMenu = true;
                 break;
             }

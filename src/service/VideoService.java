@@ -32,7 +32,6 @@ public class VideoService {
     }
 
     public void listVideos() {
-        System.out.println("===== Lista de Vídeos =====");
         for (Video video : listOfVideos) {
             System.out.println(video.toString());
         }
