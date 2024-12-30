@@ -3,6 +3,7 @@ package main;
 import model.CategoryType;
 import model.MenuType;
 import model.Video;
+import service.MenuService;
 import service.VideoService;
 
 import java.text.SimpleDateFormat;
@@ -11,14 +12,15 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        MenuService menuService = new MenuService();
         Scanner scanner = new Scanner(System.in);
         VideoService videoService = new VideoService(".\\videos.csv");
 
         System.out.println("\n=== Sistema de Gerenciamento de Vídeos ===");
-        /*
-        while(MenuService.interact()){
+        while(menuService.interact()){
+            continue;
         }
-         */
+
         while (true) {
             MenuType.showMenu();
             System.out.print("Escolha uma opção: ");
@@ -76,4 +78,10 @@ public class Main {
 
         scanner.close();
     }
+//    public static void main(String[] args) {
+//        MenuService menuService = new MenuService();
+//        while (menuService.interact()){
+//            continue;
+//        }
+//    }
 }
