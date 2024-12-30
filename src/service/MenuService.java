@@ -2,11 +2,13 @@ package service;
 
 import model.MenuType;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 // - Validar título
 // - Validar descrição
-// - Validar duração
 // - Adicionar interactCategory
 // - Validar categoria
 // - Validar data
@@ -125,5 +127,30 @@ public class MenuService {
         }
 
         return chosenOption;
+    }
+
+    private Date validatePublicationDate() {
+        boolean isNotValid = true;
+        SimpleDateFormat simpleDateFormat;
+        Date publicationDate = null;
+
+        while (isNotValid) {
+            try {
+                simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                simpleDateFormat.setLenient(false);
+
+                try {
+                    System.out.print("Digite a data de publicação no formato (dd/MM/yyyy): ");
+                    publicationDate = simpleDateFormat.parse(scanner.next());
+                    isNotValid = false;
+                } catch (ParseException e) {
+                    System.err.println("A data informada é inválida!");
+                }
+            } catch (NullPointerException | IllegalArgumentException e) {
+                System.err.println("Não foi possível criar o formatador de datas");
+            }
+        }
+
+        return publicationDate;
     }
 }
