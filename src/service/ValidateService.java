@@ -1,5 +1,7 @@
 package service;
 
+import model.CategoryType;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -84,6 +86,8 @@ public class ValidateService {
     public int validateCategory(int rangeOfOptions) {
         boolean isNotValid = true;
         int chosenOption = 0;
+
+        CategoryType.showCategory();
 
         while (isNotValid) {
             System.out.print("Escolha uma categoria entre 1 e " + rangeOfOptions + ": ");

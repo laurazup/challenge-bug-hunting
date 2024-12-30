@@ -1,12 +1,14 @@
 package service;
 
-import model.CategoryType;
 import model.MenuType;
 
 public class MenuService {
+    VideoService videoService;
     ValidateService validateService;
 
-    public MenuService() {
+
+    public MenuService(String filePathname) {
+        videoService = new VideoService(filePathname);
         validateService = new ValidateService();
     }
 
@@ -23,14 +25,12 @@ public class MenuService {
         switch (chosenOption) {
             case ADDVIDEO -> {
                 toDo = 1;
-                CategoryType.showCategory();
                 // CategoryType value = CategoryType.values()[validateService.validateCategory(CategoryType.values().length)];
                 isReInteractMenu = true;
                 break;
             }
             case EDITVIDEO -> {
                 toDo = 2;
-                CategoryType.showCategory();
                 // CategoryType value = CategoryType.values()[validateService.validateCategory(CategoryType.values().length)];
                 isReInteractMenu = true;
                 break;
