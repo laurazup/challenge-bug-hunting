@@ -35,6 +35,7 @@ public class MenuService {
                                 validateService.validatePublicationDate()
                         )
                 );
+                System.out.println("Video adicionado com sucesso!");
                 isReInteractMenu = true;
                 break;
             }
@@ -51,7 +52,10 @@ public class MenuService {
                 break;
             }
             case REMOVEVIDEO -> {
-                toDo = 4;
+                videoService.removeVideo(
+                        validateService.validateTitle()
+                );
+                System.out.println("Video removido com sucesso!");
                 isReInteractMenu = true;
                 break;
             }
