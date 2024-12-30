@@ -59,7 +59,12 @@ public class ValidateService {
     }
 
     public String validateTitle(){
-        System.out.print("Digite o título do vídeo: ");
+        System.out.print("Digite o título do vídeo(sem ';'): ");
+        return validateText();
+    }
+
+    public String validateDescription(){
+        System.out.print("Digite a descrição do vídeo (sem ';'): ");
         return validateText();
     }
 
