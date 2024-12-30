@@ -1,6 +1,8 @@
 package service;
 
+import model.CategoryType;
 import model.MenuType;
+import model.Video;
 
 public class MenuService {
     VideoService videoService;
@@ -24,8 +26,15 @@ public class MenuService {
 
         switch (chosenOption) {
             case ADDVIDEO -> {
-                toDo = 1;
-                // CategoryType value = CategoryType.values()[validateService.validateCategory(CategoryType.values().length)];
+                videoService.addVideo(
+                        new Video(
+                                validateService.validateTitle(),
+                                validateService.validateTitle(),
+                                validateService.validateDurationInMinutes(),
+                                validateService.validateCategory(CategoryType.values().length),
+                                validateService.validatePublicationDate()
+                        )
+                );
                 isReInteractMenu = true;
                 break;
             }
