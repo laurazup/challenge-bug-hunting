@@ -58,6 +58,11 @@ public class ValidateService {
         return inputUser;
     }
 
+    public String validateTitle(){
+        System.out.print("Digite o título do vídeo: ");
+        return validateText();
+    }
+
     public int validateDurationInMinutes() {
         boolean isNotValid = true;
         int chosenOption = 1;
