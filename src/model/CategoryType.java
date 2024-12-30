@@ -21,7 +21,7 @@ public enum CategoryType {
         return description;
     }
 
-    public void showCategory() {
+    public static void showCategory() {
         for (CategoryType category : CategoryType.values()) {
             System.out.println(category.ordinal() + 1 + ". " + category.getDescription());
         }
