@@ -12,8 +12,10 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        MenuService menuService = new MenuService();
+        MenuService menuService = new MenuService(".\\videos.csv");
         Scanner scanner = new Scanner(System.in);
+
+        // - Revover VideoService da classe Main (testes)
         VideoService videoService = new VideoService(".\\videos.csv");
 
         System.out.println("\n=== Sistema de Gerenciamento de Vídeos ===");
