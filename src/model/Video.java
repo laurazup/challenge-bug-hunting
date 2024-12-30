@@ -44,16 +44,16 @@ public class Video {
     @Override
     public String toString() {
         String formattedOutput = "";
-        SimpleDateFormat simpleDataFormat;
+        SimpleDateFormat simpleDateFormat;
 
         try {
-            simpleDataFormat = new SimpleDateFormat("dd/MM/yyyy");
+            simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
             formattedOutput += "Titulo    : " + title + "\n";
             formattedOutput += "Descrição : " + description + "\n";
             formattedOutput += "Duração   : " + durationInMinutes + "min.\n";
             formattedOutput += "Categoria : " + category.getDescription() + "\n";
-            formattedOutput += "Publicação: " + simpleDataFormat.format(publicationDate) + "\n";
+            formattedOutput += "Publicação: " + simpleDateFormat.format(publicationDate) + "\n";
         } catch (NullPointerException | IllegalArgumentException e) {
             System.err.println("Não foi possível criar o formatador de datas");
         }
