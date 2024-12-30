@@ -5,11 +5,13 @@ import model.MenuType;
 import java.util.Scanner;
 
 public class MenuService {
-    private static int rangeOfOptions = 0;
-    private static Scanner scanner = null;
+    private static int rangeOfOptions;
+    private final int exitOrdinal;
+    private static Scanner scanner;
 
     public MenuService() {
         rangeOfOptions = MenuType.values().length;
+        exitOrdinal = MenuType.EXIT.ordinal() + 1;
         scanner = new Scanner(System.in);
     }
 
@@ -68,12 +70,10 @@ public class MenuService {
 
     private MenuType validateMenu() {
         boolean isNotValid = true;
-        int exitOrdinal;
         int chosenOption;
 
         MenuType.showMenu();
 
-        exitOrdinal = MenuType.EXIT.ordinal() + 1;
         chosenOption = exitOrdinal;
         while (isNotValid) {
             System.out.print("Escolha uma opção entre 1 e " + rangeOfOptions + ": ");

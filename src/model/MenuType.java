@@ -10,7 +10,7 @@ public enum MenuType {
     SORTVIDEOBYDATE("Ordenar vídeos por data de publicação"),
     SHOWDSTATISTICREPORT("Exibir relatório de estatísticas"),
     EXIT("Sair");
-    //BUSINESS RULE: the exit menu must be the last one on the list.
+    // BUSINESS RULE: the exit menu must be the last one on the list.
 
     private final String description;
 
