@@ -60,7 +60,8 @@ public class MenuService {
                 break;
             }
             case SORTVIDEOBYDATE -> {
-                toDo = 5;
+                System.out.println("===== Vídeos ordenado por data =====");
+                videoService.sortVideoByDate();
                 isReInteractMenu = true;
             }
             case SEARCHVIDEOSBYTITLE -> {
