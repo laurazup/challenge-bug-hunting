@@ -4,6 +4,13 @@ import model.MenuType;
 
 import java.util.Scanner;
 
+// - Validar título
+// - Validar descrição
+// - Validar duração
+// - Renomear interactMenu
+// - Adicionar interactCategory
+// - Validar categoria
+// - Validar data
 public class MenuService {
     private static int rangeOfOptions;
     private final int exitOrdinal;
