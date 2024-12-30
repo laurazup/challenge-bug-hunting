@@ -68,7 +68,7 @@ public class MenuService {
             }
             case SEARCHVIDEOSBYTITLE -> {
                 System.out.println("===== Busca de vídeo que contem o texto =====");
-                String titleToSearch = validateService.validateTitle()
+                String titleToSearch = validateService.validateTitle();
                 videoService.searchVideosByTitle(
                         validateService.validateTitle()
                 );
@@ -79,7 +79,13 @@ public class MenuService {
                 isReInteractMenu = true;
             }
             case FILTERVIDEOBYCATEGORY -> {
-                toDo = 8;
+                System.out.println("===== Filtrar vídeos por categoria =====");
+                videoService.filterVideoByCategory(
+                        CategoryType.values()[
+                                validateService.validateCategory(
+                                        CategoryType.values().length)
+                                ]
+                );
                 isReInteractMenu = true;
             }
             case EXIT -> {
