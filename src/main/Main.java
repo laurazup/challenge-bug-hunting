@@ -74,7 +74,7 @@ public class Main {
                 videoService.searchVideosByTitle("Matrix");
                 videoService.editVideo("Matrix");
                 videoService.removeVideo("Matrix");
-                videoService.filterVideoByCategory(CategoryType.MOVIE);
+                videoService.filterVideosByCategory(CategoryType.MOVIE);
                 videoService.sortVideoByDate();
             }
         }

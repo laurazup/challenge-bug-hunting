@@ -78,9 +78,9 @@ public class MenuService {
                 toDo = 7;
                 isReInteractMenu = true;
             }
-            case FILTERVIDEOBYCATEGORY -> {
+            case FILTERVIDEOSBYCATEGORY -> {
                 System.out.println("===== Filtrar vídeos por categoria =====");
-                videoService.filterVideoByCategory(
+                videoService.filterVideosByCategory(
                         CategoryType.values()[
                                 validateService.validateCategory(
                                         CategoryType.values().length)
@@ -93,7 +93,11 @@ public class MenuService {
                 validateService.close();
                 isReInteractMenu = false;
             }
-            default -> isReInteractMenu = false;
+            default -> {
+                System.err.println("Opção inválida.");
+                validateService.close();
+                isReInteractMenu = false;
+            }
         }
 
         System.out.println(toDo);

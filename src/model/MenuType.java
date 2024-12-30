@@ -6,7 +6,7 @@ public enum MenuType {
     SEARCHVIDEOSBYTITLE("Pesquisar vídeo por título"),
     EDITVIDEO("Editar vídeo"),
     REMOVEVIDEO("Excluir vídeo"),
-    FILTERVIDEOBYCATEGORY("Filtrar vídeos por categoria"),
+    FILTERVIDEOSBYCATEGORY("Filtrar vídeos por categoria"),
     SORTVIDEOBYDATE("Ordenar vídeos por data de publicação"),
     SHOWDSTATISTICREPORT("Exibir relatório de estatísticas"),
     EXIT("Sair");
