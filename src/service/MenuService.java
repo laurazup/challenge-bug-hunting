@@ -89,7 +89,7 @@ public class MenuService {
                 isReInteractMenu = true;
             }
             case EXIT -> {
-                toDo = 9;
+                System.out.println("Saindo do sistema...");
                 validateService.close();
                 isReInteractMenu = false;
             }
