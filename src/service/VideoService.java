@@ -88,11 +88,11 @@ public class VideoService {
         }
     }
 
-    public void filterVideosByCategory(int categoryFilter) {
-        String category =  CategoryType.values()[categoryFilter].getDescription();
+    public void filterVideosByCategory(int categoryOrdinal) {
+        String categoryFilter = CategoryType.values()[categoryOrdinal].getDescription();
         listOfVideos.stream()
                 .filter((Video video) ->
-                        video.getCategory().equals(category))
+                        video.getCategory().equals(categoryFilter))
                 .forEach(System.out::println);
     }
 
