@@ -1,5 +1,6 @@
 package service;
 
+import model.AttributeType;
 import model.MenuType;
 import model.Video;
 
@@ -21,7 +22,8 @@ public class MenuService {
         MenuType.showMenu();
         chosenOption = MenuType.values()[validateService.validateOption(
                 MenuType.values().length,
-                MenuType.EXIT.ordinal())];
+                MenuType.EXIT.ordinal()
+        )];
 
         switch (chosenOption) {
             case ADDVIDEO -> {
@@ -101,5 +103,13 @@ public class MenuService {
         return isReInteractMenu;
     }
 
+    private void interactAttribute() {
+        AttributeType chosenOption;
 
+        AttributeType.showAttribute();
+        chosenOption = AttributeType.values()[validateService.validateOption(
+                AttributeType.values().length,
+                AttributeType.EXIT.ordinal()
+        )];
+    }
 }
