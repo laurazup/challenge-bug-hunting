@@ -9,4 +9,8 @@ public enum AttributeType {
     EXIT("Sair");
 
     private final String description;
+
+    AttributeType(String description) {
+        this.description = description;
+    }
 }
