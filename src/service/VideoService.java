@@ -91,6 +91,11 @@ public class VideoService {
         editVideo.setCategory(newCategory);
     }
 
+    public void editVideoPublicationDate(Date newPublicationDate, int indexOfVideo){
+        Video editVideo = listOfVideos.get(indexOfVideo);
+        editVideo.setPublicationDate(newPublicationDate);
+    }
+
     public void removeVideo(String titleOfVideo) {
         int indexOfVideo = listOfVideos.indexOf(new Video(
                 titleOfVideo,
