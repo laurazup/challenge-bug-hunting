@@ -49,6 +49,7 @@ public class MenuService {
                 );
 
                 if (indexOfVideo != -1) {
+                    // boolean hasChange;
                     interactAttribute(indexOfVideo);
                 }
 
@@ -111,6 +112,7 @@ public class MenuService {
 
     private void interactAttribute(int indexOfVideo) {
         AttributeType chosenOption;
+        // boolean hasChange = false;
         int toDo = 0;
 
         AttributeType.showAttribute();
@@ -122,6 +124,11 @@ public class MenuService {
         switch (chosenOption) {
             case TITLE -> {
                 toDo = 1;
+                videoService.editVideoTitle(
+                        validateService.validateTitle(),
+                        indexOfVideo
+                );
+                // hasChange = true;
                 break;
             }
             case DESCRIPTION -> {
