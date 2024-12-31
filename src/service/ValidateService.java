@@ -40,7 +40,7 @@ public class ValidateService {
         return chosenOption;
     }
 
-    public String validateText() {
+    private String validateText() {
         boolean isNotValid = true;
         String inputUser = "";
 
