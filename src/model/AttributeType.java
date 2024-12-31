@@ -17,4 +17,10 @@ public enum AttributeType {
     public String getDescription() {
         return description;
     }
+
+    public static void showAttribute() {
+        for (AttributeType attribute : AttributeType.values()) {
+            System.out.println(attribute.ordinal() + 1 + ". " + attribute.getDescription());
+        }
+    }
 }
