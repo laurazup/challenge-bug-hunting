@@ -105,11 +105,44 @@ public class MenuService {
 
     private void interactAttribute() {
         AttributeType chosenOption;
+        int toDo = 0;
 
         AttributeType.showAttribute();
         chosenOption = AttributeType.values()[validateService.validateOption(
                 AttributeType.values().length,
                 AttributeType.EXIT.ordinal()
         )];
+
+        switch (chosenOption) {
+            case TITLE -> {
+                toDo = 1;
+                break;
+            }
+            case DESCRIPTION -> {
+                toDo = 2;
+                break;
+            }
+            case DURATIONINMINUTES -> {
+                toDo = 3;
+                break;
+            }
+            case CATEGORY -> {
+                toDo = 4;
+                break;
+            }
+            case PUBLICATIONDATE -> {
+                toDo = 5;
+                break;
+            }
+            case EXIT -> {
+                toDo = 6;
+                break;
+            }
+            default -> {
+                toDo = 7;
+                break;
+            }
+        }
+        System.out.println(toDo);
     }
 }
