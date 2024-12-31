@@ -42,10 +42,16 @@ public class MenuService {
                 break;
             }
             case EDITVIDEO -> {
+                int indexOfVideo;
                 System.out.println("===== Editar vídeo =====");
-                videoService.editVideo(
+                indexOfVideo = videoService.editVideo(
                         validateService.validateTitle()
                 );
+
+                // if (indexOfVideo != -1){
+                //     interactAttribute(indexOfVideo);
+                // }
+
                 isReInteractMenu = true;
                 break;
             }
@@ -103,7 +109,7 @@ public class MenuService {
         return isReInteractMenu;
     }
 
-    private void interactAttribute() {
+    private void interactAttribute(int indexOfVideo) {
         AttributeType chosenOption;
         int toDo = 0;
 
