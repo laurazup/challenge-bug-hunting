@@ -50,6 +50,7 @@ public class MenuService {
 
                 if (indexOfVideo != -1) {
                     // boolean hasChange;
+                    // - Adicionar while enquanto não for EXIT
                     interactAttribute(indexOfVideo);
                 }
 
