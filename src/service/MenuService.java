@@ -69,7 +69,6 @@ public class MenuService {
             }
             case SEARCHVIDEOSBYTITLE -> {
                 System.out.println("===== Busca de vídeo que contem o texto =====");
-                String titleToSearch = validateService.validateTitle();
                 videoService.searchVideosByTitle(
                         validateService.validateTitle()
                 );
