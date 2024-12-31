@@ -45,7 +45,6 @@ public class VideoService {
                 .forEach(System.out::println);
     }
 
-    // Editar lógica para chamar um menu de edição
     public int editVideo(String titleOfVideo) {
         int indexOfVideo;
         Video chosenVideo;
@@ -71,6 +70,8 @@ public class VideoService {
 
         return indexOfVideo;
     }
+
+
 
     public void removeVideo(String titleOfVideo) {
         int indexOfVideo = listOfVideos.indexOf(new Video(
