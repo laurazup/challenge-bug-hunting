@@ -48,9 +48,9 @@ public class MenuService {
                         validateService.validateTitle()
                 );
 
-                // if (indexOfVideo != -1){
-                //     interactAttribute(indexOfVideo);
-                // }
+                if (indexOfVideo != -1) {
+                    interactAttribute(indexOfVideo);
+                }
 
                 isReInteractMenu = true;
                 break;
