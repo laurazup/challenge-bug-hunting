@@ -5,6 +5,12 @@ import model.Video;
 import java.io.*;
 import java.util.ArrayList;
 
+// BUSINESS RULE:
+// The ordinal number of the CategoryType enumerator,
+// is directly linked to the CSV file of the VideoRepository class.
+// Future changes to the enumerator must be propagated to the CSV file,
+// before the program runs again.
+
 public class VideoRepository {
     private File fileCSV = null;
 
