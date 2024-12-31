@@ -112,6 +112,7 @@ public class MenuService {
 
     private void interactAttribute(int indexOfVideo) {
         AttributeType chosenOption;
+        // boolean isReInteractAttribute;
         // boolean hasChange = false;
         int toDo = 0;
 
@@ -123,7 +124,6 @@ public class MenuService {
 
         switch (chosenOption) {
             case TITLE -> {
-                toDo = 1;
                 videoService.editVideoTitle(
                         validateService.validateTitle(),
                         indexOfVideo
@@ -132,7 +132,10 @@ public class MenuService {
                 break;
             }
             case DESCRIPTION -> {
-                toDo = 2;
+                videoService.editVideoDescription(
+                        validateService.validateDescription(),
+                        indexOfVideo
+                );
                 break;
             }
             case DURATIONINMINUTES -> {
