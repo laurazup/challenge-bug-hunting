@@ -31,7 +31,7 @@ public class MenuService {
                 videoService.addVideo(
                         new Video(
                                 validateService.validateTitle(),
-                                validateService.validateTitle(),
+                                validateService.validateDescription(),
                                 validateService.validateDurationInMinutes(),
                                 validateService.validateCategory(),
                                 validateService.validatePublicationDate()
