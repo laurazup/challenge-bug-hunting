@@ -46,7 +46,7 @@ public class VideoService {
     }
 
     // Editar lógica para chamar um menu de edição
-    public void editVideo(String titleOfVideo) {
+    public int editVideo(String titleOfVideo) {
         int indexOfVideo;
         Video chosenVideo;
         Video stubVideo;
@@ -65,14 +65,11 @@ public class VideoService {
             chosenVideo = listOfVideos.get(indexOfVideo);
             System.out.println("Video encontrado");
             System.out.println(chosenVideo);
-
-
-
-
-            videoRepository.saveListOfVideos(listOfVideos);
         } else {
             System.err.println("Vídeo não encontrado para edição!");
         }
+
+        return indexOfVideo;
     }
 
     public void removeVideo(String titleOfVideo) {
