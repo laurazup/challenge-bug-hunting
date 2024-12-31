@@ -153,7 +153,10 @@ public class MenuService {
                 break;
             }
             case PUBLICATIONDATE -> {
-                toDo = 5;
+                videoService.editVideoPublicationDate(
+                        validateService.validatePublicationDate(),
+                        indexOfVideo
+                );
                 break;
             }
             case EXIT -> {
