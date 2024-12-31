@@ -81,6 +81,11 @@ public class VideoService {
         editVideo.setDescription(newDescription);
     }
 
+    public void editVideoDurationInMinutes(int newDurationInMinutes, int indexOfVideo){
+        Video editVideo = listOfVideos.get(indexOfVideo);
+        editVideo.setDurationInMinutes(newDurationInMinutes);
+    }
+
     public void removeVideo(String titleOfVideo) {
         int indexOfVideo = listOfVideos.indexOf(new Video(
                 titleOfVideo,
