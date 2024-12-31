@@ -14,7 +14,7 @@ public class ValidateService {
         scanner = new Scanner(System.in);
     }
 
-    public int validateMenu(int rangeOfOptions, int exitOrdinal) {
+    public int validateOption(int rangeOfOptions, int exitOrdinal) {
         boolean isNotValid = true;
         int chosenOption = exitOrdinal;
 

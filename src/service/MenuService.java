@@ -19,7 +19,7 @@ public class MenuService {
         int toDo = 0;
 
         MenuType.showMenu();
-        chosenOption = MenuType.values()[validateService.validateMenu(
+        chosenOption = MenuType.values()[validateService.validateOption(
                 MenuType.values().length,
                 MenuType.EXIT.ordinal())];
 
@@ -100,4 +100,6 @@ public class MenuService {
         System.out.println(toDo);
         return isReInteractMenu;
     }
+
+
 }
