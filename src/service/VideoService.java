@@ -86,6 +86,11 @@ public class VideoService {
         editVideo.setDurationInMinutes(newDurationInMinutes);
     }
 
+    public void editVideoCategory(int newCategory, int indexOfVideo){
+        Video editVideo = listOfVideos.get(indexOfVideo);
+        editVideo.setCategory(newCategory);
+    }
+
     public void removeVideo(String titleOfVideo) {
         int indexOfVideo = listOfVideos.indexOf(new Video(
                 titleOfVideo,
