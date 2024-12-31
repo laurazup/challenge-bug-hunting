@@ -7,4 +7,6 @@ public enum AttributeType {
     CATEGORY("Categoria"),
     PUBLICATIONDATE("Data de publicação"),
     EXIT("Sair");
+
+    private final String description;
 }
