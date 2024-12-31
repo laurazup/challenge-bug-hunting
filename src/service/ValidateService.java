@@ -93,8 +93,9 @@ public class ValidateService {
         return chosenOption;
     }
 
-    public int validateCategory(int rangeOfOptions) {
+    public int validateCategory() {
         boolean isNotValid = true;
+        int rangeOfOptions = CategoryType.values().length;
         int chosenOption = 0;
 
         CategoryType.showCategory();

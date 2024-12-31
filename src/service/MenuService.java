@@ -32,7 +32,7 @@ public class MenuService {
                                 validateService.validateTitle(),
                                 validateService.validateTitle(),
                                 validateService.validateDurationInMinutes(),
-                                validateService.validateCategory(CategoryType.values().length),
+                                validateService.validateCategory(),
                                 validateService.validatePublicationDate()
                         )
                 );
@@ -82,8 +82,7 @@ public class MenuService {
                 System.out.println("===== Filtrar vídeos por categoria =====");
                 videoService.filterVideosByCategory(
                         CategoryType.values()[
-                                validateService.validateCategory(
-                                        CategoryType.values().length)
+                                validateService.validateCategory()
                                 ]
                 );
                 isReInteractMenu = true;
