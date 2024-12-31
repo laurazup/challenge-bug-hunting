@@ -71,7 +71,10 @@ public class VideoService {
         return indexOfVideo;
     }
 
-
+    public void editVideoTitle(String newTitle, int indexOfVideo){
+        Video editVideo = listOfVideos.get(indexOfVideo);
+        editVideo.setTitle(newTitle);
+    }
 
     public void removeVideo(String titleOfVideo) {
         int indexOfVideo = listOfVideos.indexOf(new Video(
