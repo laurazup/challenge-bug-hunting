@@ -146,7 +146,10 @@ public class MenuService {
                 break;
             }
             case CATEGORY -> {
-                toDo = 4;
+                videoService.editVideoCategory(
+                        validateService.validateCategory(),
+                        indexOfVideo
+                );
                 break;
             }
             case PUBLICATIONDATE -> {
