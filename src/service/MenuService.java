@@ -40,8 +40,10 @@ public class MenuService {
                 break;
             }
             case EDITVIDEO -> {
-                toDo = 2;
-                // CategoryType value = CategoryType.values()[validateService.validateCategory(CategoryType.values().length)];
+                System.out.println("===== Editar vídeo =====");
+                videoService.editVideo(
+                        validateService.validateTitle()
+                );
                 isReInteractMenu = true;
                 break;
             }
