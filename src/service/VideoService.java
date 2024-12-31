@@ -45,7 +45,7 @@ public class VideoService {
                 .forEach(System.out::println);
     }
 
-    public int editVideo(String titleOfVideo) {
+    public int indexVideoEdit(String titleOfVideo) {
         int indexOfVideo;
         Video chosenVideo;
         Video stubVideo;

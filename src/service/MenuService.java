@@ -44,7 +44,7 @@ public class MenuService {
             case EDITVIDEO -> {
                 int indexOfVideo;
                 System.out.println("===== Editar vídeo =====");
-                indexOfVideo = videoService.editVideo(
+                indexOfVideo = videoService.indexVideoEdit(
                         validateService.validateTitle()
                 );
 
