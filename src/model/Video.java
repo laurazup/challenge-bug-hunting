@@ -33,8 +33,8 @@ public class Video {
         this.durationInMinutes = durationInMinutes;
     }
 
-    public void setCategory(CategoryType category) {
-        this.category = category;
+    public void setCategory(int categoryOrdinal) {
+        this.category = CategoryType.values()[categoryOrdinal];
     }
 
     public void setPublicationDate(Date publicationDate) {
