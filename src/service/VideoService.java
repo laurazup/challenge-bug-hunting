@@ -1,6 +1,5 @@
 package service;
 
-import model.CategoryType;
 import model.Video;
 import repository.VideoRepository;
 
@@ -49,25 +48,30 @@ public class VideoService {
     // Editar lógica para chamar um menu de edição
     public void editVideo(String titleOfVideo) {
         int indexOfVideo;
-        Video oldVideo;
-        Video newVideo;
+        Video chosenVideo;
+        Video stubVideo;
 
-        newVideo = new Video(titleOfVideo,
+        stubVideo = new Video(
+                titleOfVideo,
                 "descrição",
                 1,
                 0,
-                new Date(System.currentTimeMillis()));
+                new Date(System.currentTimeMillis())
+        );
 
-        indexOfVideo = listOfVideos.indexOf(newVideo);
+        indexOfVideo = listOfVideos.indexOf(stubVideo);
 
         if (indexOfVideo != -1) {
-            // newVideo = Menu.addVideo();
-            oldVideo = listOfVideos.get(indexOfVideo);
-            // oldVideo = newVideo;
-            System.out.println(oldVideo);
-            System.out.println(newVideo);
+            chosenVideo = listOfVideos.get(indexOfVideo);
+            System.out.println("Video encontrado");
+            System.out.println(chosenVideo);
+
+
+
 
             videoRepository.saveListOfVideos(listOfVideos);
+        } else {
+            System.err.println("Vídeo não encontrado para edição!");
         }
     }
 
@@ -89,10 +93,16 @@ public class VideoService {
     }
 
     public void filterVideosByCategory(int categoryOrdinal) {
-        String categoryFilter = CategoryType.values()[categoryOrdinal].getDescription();
+        Video stubVideo = new Video(
+                "Titulo",
+                "Descrição",
+                1,
+                categoryOrdinal,
+                new Date(System.currentTimeMillis())
+        );
         listOfVideos.stream()
                 .filter((Video video) ->
-                        video.getCategory().equals(categoryFilter))
+                        video.getCategory().equals(stubVideo.getCategory()))
                 .forEach(System.out::println);
     }
 
