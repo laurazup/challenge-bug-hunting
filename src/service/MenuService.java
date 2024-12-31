@@ -1,6 +1,5 @@
 package service;
 
-import model.CategoryType;
 import model.MenuType;
 import model.Video;
 
@@ -81,9 +80,7 @@ public class MenuService {
             case FILTERVIDEOSBYCATEGORY -> {
                 System.out.println("===== Filtrar vídeos por categoria =====");
                 videoService.filterVideosByCategory(
-                        CategoryType.values()[
-                                validateService.validateCategory()
-                                ]
+                        validateService.validateCategory()
                 );
                 isReInteractMenu = true;
             }
