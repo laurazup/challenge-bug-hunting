@@ -139,7 +139,10 @@ public class MenuService {
                 break;
             }
             case DURATIONINMINUTES -> {
-                toDo = 3;
+                videoService.editVideoDurationInMinutes(
+                        validateService.validateDurationInMinutes(),
+                        indexOfVideo
+                );
                 break;
             }
             case CATEGORY -> {
