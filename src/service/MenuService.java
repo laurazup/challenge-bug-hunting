@@ -98,7 +98,18 @@ public class MenuService {
                 isReInteractMenu = true;
             }
             case SHOWSTATISTICREPORT -> {
-                toDo = 7;
+                int[] listByCategory;
+
+                System.out.println("===== Estatísticas dos vídeos =====");
+                listByCategory = videoService.showStatisticReport(AttributeType.values().length);
+
+                System.out.println("Quantidade de vídeos por categoria:");
+                for (int index = 0; index < listByCategory.length; index++) {
+                    System.out.println(AttributeType.values()[index]
+                            .getDescription() + ": "
+                            + listByCategory[index]);
+                }
+
                 isReInteractMenu = true;
             }
             case EXIT -> {
