@@ -53,7 +53,11 @@ public class Video {
         return durationInMinutes;
     }
 
-    public String getCategory() {
+    public int getCategoryInOrdinal(){
+        return category.ordinal();
+    }
+
+    public String getCategoryInString() {
         return category.getDescription();
     }
 
