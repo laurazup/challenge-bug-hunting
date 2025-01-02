@@ -62,9 +62,11 @@ public class MenuService {
                 );
 
                 if (indexOfVideo != -1) {
-                    // boolean hasChange;
-                    // - Adicionar while enquanto não for EXIT
-                    interactAttribute(indexOfVideo);
+                    boolean hasChange = false;
+
+                    while (interactAttribute(indexOfVideo)) {
+                        hasChange = true;
+                    }
                 }
 
                 isReInteractMenu = true;
@@ -111,10 +113,9 @@ public class MenuService {
         return isReInteractMenu;
     }
 
-    private void interactAttribute(int indexOfVideo) {
+    private boolean interactAttribute(int indexOfVideo) {
         AttributeType chosenOption;
-        // boolean isReInteractAttribute;
-        // boolean hasChange = false;
+        boolean isReInteractAttribute = false;
         int toDo = 0;
 
         AttributeType.showAttribute();
@@ -129,7 +130,7 @@ public class MenuService {
                         validateService.validateTitle(),
                         indexOfVideo
                 );
-                // hasChange = true;
+                isReInteractAttribute = true;
                 break;
             }
             case DESCRIPTION -> {
@@ -137,6 +138,7 @@ public class MenuService {
                         validateService.validateDescription(),
                         indexOfVideo
                 );
+                isReInteractAttribute = true;
                 break;
             }
             case DURATIONINMINUTES -> {
@@ -144,6 +146,7 @@ public class MenuService {
                         validateService.validateDurationInMinutes(),
                         indexOfVideo
                 );
+                isReInteractAttribute = true;
                 break;
             }
             case CATEGORY -> {
@@ -151,6 +154,7 @@ public class MenuService {
                         validateService.validateCategory(),
                         indexOfVideo
                 );
+                isReInteractAttribute = true;
                 break;
             }
             case PUBLICATIONDATE -> {
@@ -158,10 +162,11 @@ public class MenuService {
                         validateService.validatePublicationDate(),
                         indexOfVideo
                 );
+                isReInteractAttribute = true;
                 break;
             }
             case EXIT -> {
-                toDo = 6;
+                isReInteractAttribute = false;
                 break;
             }
             default -> {
@@ -169,6 +174,6 @@ public class MenuService {
                 break;
             }
         }
-        System.out.println(toDo);
+        return isReInteractAttribute;
     }
 }
