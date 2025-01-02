@@ -27,10 +27,10 @@ public class VideoRepository {
         BufferedWriter bufferedWriter;
 
         try {
-            // - Criar lógica com booleano append com um bloco exclusivo para addVideo
-            //   from {Create, up-date and Delete}
+            // Create logic with boolean append with a unique block for addVideo
+            //   from {Create, Up-date and Delete}
             //     to {create}{Up-date and Delete}
-            // ??? É viável aumentar a complexidade por otimização com append() ???
+            // ??? Is it viable to increase complexity by optimization with append() ???
 
             fileWriter = new FileWriter(fileCSV);
             bufferedWriter = new BufferedWriter(fileWriter);
