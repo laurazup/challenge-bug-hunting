@@ -96,6 +96,10 @@ public class VideoService {
         editVideo.setPublicationDate(newPublicationDate);
     }
 
+    public void editSaveVideo() {
+        videoRepository.saveListOfVideos(listOfVideos);
+    }
+
     public void removeVideo(String titleOfVideo) {
         int indexOfVideo = listOfVideos.indexOf(new Video(
                 titleOfVideo,
