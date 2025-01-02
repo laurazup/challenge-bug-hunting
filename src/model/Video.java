@@ -45,10 +45,6 @@ public class Video {
         return title;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
     public int getDurationInMinutes() {
         return durationInMinutes;
     }
