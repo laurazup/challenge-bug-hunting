@@ -135,11 +135,6 @@ public class VideoService {
                 .forEach(System.out::println);
     }
 
-    // Relatório de estatísticas:
-    //      Número total de vídeos.
-    //      Duração total de todos os vídeos.
-    //      Quantidade de vídeos por categoria.
-
     public int[] showStatisticReport(int rangeOfOrdinals) {
         int totalVideos = 0;
         int totalDurationInMinutes = 0;
