@@ -28,9 +28,9 @@ public class VideoRepository {
 
         try {
             // - Criar lógica com booleano append com um bloco exclusivo para addVideo
-            //   de {Create, Update, Delete}
-            // para {create}{Update e Delete}
-            // ¿¿¿ É viável aumentar a complexidade por otimização com append ???
+            //   from {Create, up-date and Delete}
+            //     to {create}{Up-date and Delete}
+            // ??? É viável aumentar a complexidade por otimização com append() ???
 
             fileWriter = new FileWriter(fileCSV);
             bufferedWriter = new BufferedWriter(fileWriter);
