@@ -39,13 +39,11 @@ public class MenuService {
                 );
                 System.out.println("Video adicionado com sucesso!");
                 isReInteractMenu = true;
-                break;
             }
             case LISTVIDEOS -> {
                 System.out.println("===== Lista de Vídeos =====");
                 videoService.listVideos();
                 isReInteractMenu = true;
-                break;
             }
             case SEARCHVIDEOSBYTITLE -> {
                 System.out.println("===== Busca de vídeo que contem o texto =====");
@@ -74,7 +72,6 @@ public class MenuService {
                 }
 
                 isReInteractMenu = true;
-                break;
             }
             case REMOVEVIDEO -> {
                 System.out.println("===== Remoção de vídeo =====");
@@ -83,7 +80,6 @@ public class MenuService {
                 );
                 System.out.println("Video removido com sucesso!");
                 isReInteractMenu = true;
-                break;
             }
             case FILTERVIDEOSBYCATEGORY -> {
                 System.out.println("===== Filtrar vídeos por categoria =====");
@@ -131,7 +127,6 @@ public class MenuService {
     private boolean interactAttribute(int indexOfVideo) {
         AttributeType chosenOption;
         boolean isReInteractAttribute = false;
-        int toDo = 0;
 
         AttributeType.showAttribute();
         chosenOption = AttributeType.values()[validateService.validateOption(
@@ -146,7 +141,6 @@ public class MenuService {
                         indexOfVideo
                 );
                 isReInteractAttribute = true;
-                break;
             }
             case DESCRIPTION -> {
                 videoService.editVideoDescription(
@@ -154,7 +148,6 @@ public class MenuService {
                         indexOfVideo
                 );
                 isReInteractAttribute = true;
-                break;
             }
             case DURATIONINMINUTES -> {
                 videoService.editVideoDurationInMinutes(
@@ -162,7 +155,6 @@ public class MenuService {
                         indexOfVideo
                 );
                 isReInteractAttribute = true;
-                break;
             }
             case CATEGORY -> {
                 videoService.editVideoCategory(
@@ -170,7 +162,6 @@ public class MenuService {
                         indexOfVideo
                 );
                 isReInteractAttribute = true;
-                break;
             }
             case PUBLICATIONDATE -> {
                 videoService.editVideoPublicationDate(
@@ -178,16 +169,8 @@ public class MenuService {
                         indexOfVideo
                 );
                 isReInteractAttribute = true;
-                break;
             }
-            case EXIT -> {
-                isReInteractAttribute = false;
-                break;
-            }
-            default -> {
-                toDo = 7;
-                break;
-            }
+            case EXIT -> isReInteractAttribute = false;
         }
         return isReInteractAttribute;
     }
