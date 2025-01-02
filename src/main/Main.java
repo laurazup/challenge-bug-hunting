@@ -1,5 +1,6 @@
 package main;
 
+import model.Categoria;
 import model.Video;
 import repository.FileVideoRepository;
 import service.VideoService;
@@ -37,14 +38,12 @@ public class Main {
                 int duracao = scanner.nextInt();
                 scanner.nextLine(); // Consumir a quebra de linha
                 System.out.print("Digite a categoria do vídeo: ");
-                String categoria = scanner.nextLine();
+                Categoria categoria = Categoria.isValidCategoria(scanner.nextLine());
                 System.out.print("Digite a data de publicação (dd/MM/yyyy): ");
                 String dataStr = scanner.nextLine();
 
                 try {
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                    Date dataPublicacao = sdf.parse(dataStr);
-                    Video video = new Video(titulo, descricao, duracao, categoria, dataPublicacao);
+                    Video video = new Video(titulo, descricao, duracao, categoria, dataStr);
                     videoService.addVideo(video);
                     System.out.println("Vídeo adicionado com sucesso!");
                 } catch (Exception e) {
@@ -53,7 +52,10 @@ public class Main {
             } else if (opcao == 2) {
                 List<Video> videos = videoService.listVideos();
                 for (Video video : videos) {
-                    System.out.println(video);
+                    System.out.println("Título: " + video.getTitulo() + "\n" + "Descrição: "  +
+                            video.getDescricao() + "\n" + "Duração: " + video.getDuracao() + "\n" +
+                            "Categoria: " + video.getCategoria() + "\n" +
+                            "Data Publicação: " + video.getDataPublicacao());
                 }
             } else if (opcao == 3) {
                 System.out.print("Digite o título para busca: ");
@@ -71,5 +73,6 @@ public class Main {
         }
 
         scanner.close();
+
     }
 }
