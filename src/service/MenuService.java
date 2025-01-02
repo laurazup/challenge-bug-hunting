@@ -142,7 +142,7 @@ public class MenuService {
                 );
                 isReInteractAttribute = true;
             }
-            case DURATIONINMINUTES -> {
+            case DURATION_IN_MINUTES -> {
                 videoService.editVideoDurationInMinutes(
                         validateService.validateDurationInMinutes(),
                         indexOfVideo
@@ -156,7 +156,7 @@ public class MenuService {
                 );
                 isReInteractAttribute = true;
             }
-            case PUBLICATIONDATE -> {
+            case PUBLICATION_DATE -> {
                 videoService.editVideoPublicationDate(
                         validateService.validatePublicationDate(),
                         indexOfVideo

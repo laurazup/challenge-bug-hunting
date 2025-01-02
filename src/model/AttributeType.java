@@ -3,9 +3,9 @@ package model;
 public enum AttributeType {
     TITLE("Título"),
     DESCRIPTION("Descrição"),
-    DURATIONINMINUTES("Duração em minutos"),
+    DURATION_IN_MINUTES("Duração em minutos"),
     CATEGORY("Categoria"),
-    PUBLICATIONDATE("Data de publicação"),
+    PUBLICATION_DATE("Data de publicação"),
     EXIT("Sair");
 
     private final String description;
