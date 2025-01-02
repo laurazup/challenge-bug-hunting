@@ -25,7 +25,7 @@ public class MenuService {
         )];
 
         switch (chosenOption) {
-            case ADDVIDEO -> {
+            case ADD_VIDEO -> {
                 System.out.println("===== Adição de vídeo =====");
                 videoService.addVideo(
                         new Video(
@@ -39,19 +39,19 @@ public class MenuService {
                 System.out.println("Video adicionado com sucesso!");
                 isReInteractMenu = true;
             }
-            case LISTVIDEOS -> {
+            case LIST_VIDEOS -> {
                 System.out.println("===== Lista de Vídeos =====");
                 videoService.listVideos();
                 isReInteractMenu = true;
             }
-            case SEARCHVIDEOSBYTITLE -> {
+            case SEARCH_VIDEOS_BY_TITLE -> {
                 System.out.println("===== Busca de vídeo que contem o texto =====");
                 videoService.searchVideosByTitle(
                         validateService.validateTitle()
                 );
                 isReInteractMenu = true;
             }
-            case EDITVIDEO -> {
+            case EDIT_VIDEO -> {
                 int indexOfVideo;
                 System.out.println("===== Editar vídeo =====");
                 indexOfVideo = videoService.indexVideoEdit(
@@ -72,7 +72,7 @@ public class MenuService {
 
                 isReInteractMenu = true;
             }
-            case REMOVEVIDEO -> {
+            case REMOVE_VIDEO -> {
                 System.out.println("===== Remoção de vídeo =====");
                 videoService.removeVideo(
                         validateService.validateTitle()
@@ -80,19 +80,19 @@ public class MenuService {
                 System.out.println("Video removido com sucesso!");
                 isReInteractMenu = true;
             }
-            case FILTERVIDEOSBYCATEGORY -> {
+            case FILTER_VIDEOS_BY_CATEGORY -> {
                 System.out.println("===== Filtrar vídeos por categoria =====");
                 videoService.filterVideosByCategory(
                         validateService.validateCategory()
                 );
                 isReInteractMenu = true;
             }
-            case SORTVIDEOBYDATE -> {
+            case SORT_VIDEO_BY_DATE -> {
                 System.out.println("===== Vídeos ordenado por data =====");
                 videoService.sortVideoByDate();
                 isReInteractMenu = true;
             }
-            case SHOWSTATISTICREPORT -> {
+            case SHOW_STATISTICS_REPORT -> {
                 int[] listByCategory;
 
                 System.out.println("===== Estatísticas dos vídeos =====");

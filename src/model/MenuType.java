@@ -1,14 +1,14 @@
 package model;
 
 public enum MenuType {
-    ADDVIDEO("Adicionar vídeo"),
-    LISTVIDEOS("Listar vídeos"),
-    SEARCHVIDEOSBYTITLE("Pesquisar vídeo por título"),
-    EDITVIDEO("Editar vídeo"),
-    REMOVEVIDEO("Excluir vídeo"),
-    FILTERVIDEOSBYCATEGORY("Filtrar vídeos por categoria"),
-    SORTVIDEOBYDATE("Ordenar vídeos por data de publicação"),
-    SHOWSTATISTICREPORT("Exibir relatório de estatísticas"),
+    ADD_VIDEO("Adicionar vídeo"),
+    LIST_VIDEOS("Listar vídeos"),
+    SEARCH_VIDEOS_BY_TITLE("Pesquisar vídeo por título"),
+    EDIT_VIDEO("Editar vídeo"),
+    REMOVE_VIDEO("Excluir vídeo"),
+    FILTER_VIDEOS_BY_CATEGORY("Filtrar vídeos por categoria"),
+    SORT_VIDEO_BY_DATE("Ordenar vídeos por data de publicação"),
+    SHOW_STATISTICS_REPORT("Exibir relatório de estatísticas"),
     EXIT("Sair");
     // BUSINESS RULE: the exit menu must be the last one on the list.
 
