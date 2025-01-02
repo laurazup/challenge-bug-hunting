@@ -7,9 +7,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 
-// - Exibir relatório de estatísticas
-// - Refatorar editVideo
-
 public class VideoService {
     private final ArrayList<Video> listOfVideos;
     private final VideoRepository videoRepository;
@@ -127,7 +124,7 @@ public class VideoService {
         );
         listOfVideos.stream()
                 .filter((Video video) ->
-                        video.getCategory().equals(stubVideo.getCategory()))
+                        video.getCategoryInString().equals(stubVideo.getCategoryInString()))
                 .forEach(System.out::println);
     }
 
@@ -143,7 +140,20 @@ public class VideoService {
     //      Duração total de todos os vídeos.
     //      Quantidade de vídeos por categoria.
 
-    public void showStatisticReport() {
+    public int[] showStatisticReport(int rangeOfOrdinals) {
+        int totalVideos = 0;
+        int totalDurationInMinutes = 0;
+        int[] totalByCategory = new int[rangeOfOrdinals];
 
+        for (Video video : listOfVideos) {
+            totalVideos++;
+            totalDurationInMinutes += video.getDurationInMinutes();
+            totalByCategory[video.getCategoryInOrdinal()]++;
+        }
+
+        System.out.println("Número total de vídeos: " + totalVideos);
+        System.out.println("Duração total de todos os vídeos: " + totalDurationInMinutes + "min");
+
+        return totalByCategory;
     }
 }
