@@ -41,6 +41,19 @@ public class MenuService {
                 isReInteractMenu = true;
                 break;
             }
+            case LISTVIDEOS -> {
+                System.out.println("===== Lista de Vídeos =====");
+                videoService.listVideos();
+                isReInteractMenu = true;
+                break;
+            }
+            case SEARCHVIDEOSBYTITLE -> {
+                System.out.println("===== Busca de vídeo que contem o texto =====");
+                videoService.searchVideosByTitle(
+                        validateService.validateTitle()
+                );
+                isReInteractMenu = true;
+            }
             case EDITVIDEO -> {
                 int indexOfVideo;
                 System.out.println("===== Editar vídeo =====");
@@ -57,12 +70,6 @@ public class MenuService {
                 isReInteractMenu = true;
                 break;
             }
-            case LISTVIDEOS -> {
-                System.out.println("===== Lista de Vídeos =====");
-                videoService.listVideos();
-                isReInteractMenu = true;
-                break;
-            }
             case REMOVEVIDEO -> {
                 System.out.println("===== Remoção de vídeo =====");
                 videoService.removeVideo(
@@ -72,27 +79,20 @@ public class MenuService {
                 isReInteractMenu = true;
                 break;
             }
-            case SORTVIDEOBYDATE -> {
-                System.out.println("===== Vídeos ordenado por data =====");
-                videoService.sortVideoByDate();
-                isReInteractMenu = true;
-            }
-            case SEARCHVIDEOSBYTITLE -> {
-                System.out.println("===== Busca de vídeo que contem o texto =====");
-                videoService.searchVideosByTitle(
-                        validateService.validateTitle()
-                );
-                isReInteractMenu = true;
-            }
-            case SHOWDSTATISTICREPORT -> {
-                toDo = 7;
-                isReInteractMenu = true;
-            }
             case FILTERVIDEOSBYCATEGORY -> {
                 System.out.println("===== Filtrar vídeos por categoria =====");
                 videoService.filterVideosByCategory(
                         validateService.validateCategory()
                 );
+                isReInteractMenu = true;
+            }
+            case SORTVIDEOBYDATE -> {
+                System.out.println("===== Vídeos ordenado por data =====");
+                videoService.sortVideoByDate();
+                isReInteractMenu = true;
+            }
+            case SHOWSTATISTICREPORT -> {
+                toDo = 7;
                 isReInteractMenu = true;
             }
             case EXIT -> {

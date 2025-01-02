@@ -133,4 +133,13 @@ public class VideoService {
                         Video::getPublicationDate))
                 .forEach(System.out::println);
     }
+
+    // Relatório de estatísticas:
+    //      Número total de vídeos.
+    //      Duração total de todos os vídeos.
+    //      Quantidade de vídeos por categoria.
+
+    public void showStatisticReport() {
+
+    }
 }

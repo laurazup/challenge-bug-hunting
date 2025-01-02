@@ -8,7 +8,7 @@ public enum MenuType {
     REMOVEVIDEO("Excluir vídeo"),
     FILTERVIDEOSBYCATEGORY("Filtrar vídeos por categoria"),
     SORTVIDEOBYDATE("Ordenar vídeos por data de publicação"),
-    SHOWDSTATISTICREPORT("Exibir relatório de estatísticas"),
+    SHOWSTATISTICREPORT("Exibir relatório de estatísticas"),
     EXIT("Sair");
     // BUSINESS RULE: the exit menu must be the last one on the list.
 
