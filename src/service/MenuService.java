@@ -15,9 +15,8 @@ public class MenuService {
     }
 
     public boolean interactMenu() {
-        boolean isReInteractMenu;
+        boolean isReInteractMenu = false;
         MenuType chosenOption;
-        int toDo = 0;
 
         MenuType.showMenu();
         chosenOption = MenuType.values()[validateService.validateOption(
@@ -109,18 +108,12 @@ public class MenuService {
                 isReInteractMenu = true;
             }
             case EXIT -> {
-                System.out.println("Saindo do sistema...");
+                System.out.println("Saindo do Menu...");
                 validateService.close();
-                isReInteractMenu = false;
-            }
-            default -> {
-                System.err.println("Opção inválida.");
-                validateService.close();
-                isReInteractMenu = false;
+                // isReInteractMenu = false;
             }
         }
 
-        System.out.println(toDo);
         return isReInteractMenu;
     }
 
@@ -170,7 +163,9 @@ public class MenuService {
                 );
                 isReInteractAttribute = true;
             }
-            case EXIT -> isReInteractAttribute = false;
+            case EXIT -> {
+                // isReInteractAttribute = false;
+            }
         }
         return isReInteractAttribute;
     }
