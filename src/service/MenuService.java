@@ -67,6 +67,10 @@ public class MenuService {
                     while (interactAttribute(indexOfVideo)) {
                         hasChange = true;
                     }
+
+                    if (hasChange) {
+                        videoService.editSaveVideo();
+                    }
                 }
 
                 isReInteractMenu = true;
