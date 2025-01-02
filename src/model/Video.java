@@ -115,7 +115,7 @@ public class Video {
         } catch (NullPointerException | IllegalArgumentException e) {
             System.err.println("Não foi possível criar o formatador de datas");
         } catch (ParseException e) {
-            System.err.println("Não foi possível transfomar o texto em uma data");
+            System.err.println("Não foi possível transformar o texto em uma data");
         }
 
         System.err.println("Não possível criar o vídeo");
