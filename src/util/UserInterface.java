@@ -68,7 +68,7 @@ public class UserInterface {
             String descricao = inputValidator.isValidString("Digite a descrição do vídeo: ", scanner);
             int duracao = inputValidator.isValidInt("Digite a duração do vídeo (em minutos): ", scanner);
             Categoria categoria = inputValidator.getCategoriaInput("Digite a categoria do vídeo: ", scanner);
-            String dataStr = inputValidator.isValidString("Digite a data de publicação (dd/MM/yyyy): ", scanner);
+            String dataStr = inputValidator.isValidDate("Digite a data de publicação (dd/MM/yyyy): ", scanner);
 
             Video video = new Video(titulo, descricao, duracao, categoria, dataStr);
             videoService.addVideo(video);
