@@ -1,6 +1,7 @@
 package service;
 
 import model.AttributeType;
+import model.CategoryType;
 import model.MenuType;
 import model.Video;
 
@@ -97,11 +98,11 @@ public class MenuService {
                 int[] listByCategory;
 
                 System.out.println("===== Estatísticas dos vídeos =====");
-                listByCategory = videoService.showStatisticReport(AttributeType.values().length);
+                listByCategory = videoService.showStatisticReport(CategoryType.values().length);
 
                 System.out.println("Quantidade de vídeos por categoria:");
                 for (int index = 0; index < listByCategory.length; index++) {
-                    System.out.println(AttributeType.values()[index]
+                    System.out.println(CategoryType.values()[index]
                             .getDescription() + ": "
                             + listByCategory[index]);
                 }
