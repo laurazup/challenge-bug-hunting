@@ -2,8 +2,6 @@ package service;
 
 import model.CategoryType;
 
-// import java.text.ParseException;
-// import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
