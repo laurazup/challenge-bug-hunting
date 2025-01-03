@@ -1,6 +1,5 @@
 package service;
 
-import java.text.ParseException;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,6 +22,7 @@ public class DateService {
 
     public static Date stringToDate(String dateFormat, ParsePosition parsePosition){
         Date date = null;
+
         try {
             date = simpleDateFormat.parse(dateFormat, parsePosition);
         } catch (NullPointerException e) {
