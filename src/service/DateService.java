@@ -7,8 +7,7 @@ import java.util.Date;
 public class DateService {
     SimpleDateFormat simpleDateFormat;
     ParsePosition parsePosition;
-    // todo add ParsePosition intern
-    // todo add boolean method using getErrorIndex
+
     DateService() {
         try {
             simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
