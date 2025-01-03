@@ -24,6 +24,8 @@ public class DateService {
 
     public Date stringToDate(String dateFormat){
         Date date = null;
+        parsePosition.setIndex(0);
+
         try {
             date = simpleDateFormat.parse(dateFormat, parsePosition);
         } catch (NullPointerException e) {
@@ -35,6 +37,10 @@ public class DateService {
 
     public boolean getError() {
         return parsePosition.getErrorIndex() != -1;
+    }
+
+    public void resetErrorIndex() {
+        parsePosition.setErrorIndex(-1);
     }
 
 }
