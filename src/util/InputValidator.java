@@ -1,34 +1,40 @@
-package main;
+package util;
 
 import model.Categoria;
-
 import java.util.Scanner;
 
 public class InputValidator {
 
-    public String getStringInput(String prompt, Scanner scanner) {
-        System.out.print(prompt);
+    public String isValidString(String string, Scanner scanner) {
+        System.out.print(string);
         return scanner.nextLine();
     }
 
-    public int getIntInput(String prompt, Scanner scanner) {
-        System.out.print(prompt);
+    public int isValidInt(String string, Scanner scanner) {
+        System.out.print(string);
         while (!scanner.hasNextInt()) {
-            System.out.println("Entrada inválida. Por favor, insira um número.");
-            scanner.next();
+            System.out.println("Erro! Por favor, digite um número!");
+            scanner.nextLine();
         }
         int value = scanner.nextInt();
-        scanner.nextLine(); // Consumir a quebra de linha
+        scanner.nextLine();
         return value;
     }
 
-    public Categoria getCategoriaInput(String prompt, Scanner scanner) {
+
+    public Categoria getCategoriaInput(String string, Scanner scanner) {
         while (true) {
             try {
-                String input = getStringInput(prompt, scanner);
+                String input = isValidString(string, scanner);
                 return Categoria.isValidCategoria(input);
             } catch (IllegalArgumentException e) {
-                System.out.println("Categoria inválida. Tente novamente.");
+                System.out.println("""
+                        Categoria inválida. Tente novamente!
+                        As categorias válidas são:
+                        Documentário
+                        Série
+                        Filme
+                        Animação""");
             }
         }
     }
