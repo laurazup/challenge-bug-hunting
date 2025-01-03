@@ -5,24 +5,26 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DateService {
-    static SimpleDateFormat simpleDateFormat;
-
+    SimpleDateFormat simpleDateFormat;
+    ParsePosition parsePosition;
+    // todo add ParsePosition intern
+    // todo add boolean method using getErrorIndex
     DateService() {
         try {
             simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
             simpleDateFormat.setLenient(false);
+            parsePosition = new ParsePosition(0);
         } catch (NullPointerException | IllegalArgumentException e) {
             System.err.println("Não foi possível criar o formatador de datas");
         }
     }
 
-    public static String dateToString(Date date) {
+    public String dateToString(Date date) {
         return simpleDateFormat.format(date);
     }
 
-    public static Date stringToDate(String dateFormat, ParsePosition parsePosition){
+    public Date stringToDate(String dateFormat){
         Date date = null;
-
         try {
             date = simpleDateFormat.parse(dateFormat, parsePosition);
         } catch (NullPointerException e) {
@@ -30,6 +32,10 @@ public class DateService {
         }
 
         return date;
+    }
+
+    public boolean getError() {
+        return parsePosition.getErrorIndex() != -1;
     }
 
 }
