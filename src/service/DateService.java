@@ -1,5 +1,6 @@
 package service;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -18,9 +19,9 @@ public class DateService {
     public String dateToString(Date date) {
         return simpleDateFormat.format(date);
     }
-//
-//    public Date stringToDate(String dateFormat){
-//        return new Date();
-//    }
+
+    public Date stringToDate(String dateFormat) throws ParseException {
+        return simpleDateFormat.parse(dateFormat);
+    }
 
 }
