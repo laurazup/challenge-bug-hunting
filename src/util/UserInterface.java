@@ -84,8 +84,6 @@ public class UserInterface {
         try {
             String titulo = inputValidator.isValidString("Digite o título do vídeo que deseja deletar: ", scanner);
             videoService.deleteVideo(titulo);
-            System.out.println("Vídeo deletado com sucesso!");
-
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
