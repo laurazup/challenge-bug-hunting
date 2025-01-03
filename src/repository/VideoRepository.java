@@ -50,7 +50,7 @@ public class VideoRepository {
                 System.err.println("Não foi possível fechar os arquivos");
             }
         } catch (IOException e) {
-            System.err.println("Não foi possível abrir o arquivo" + fileCSV.getName() + "para escrita");
+            System.err.println("Não foi possível abrir o arquivo " + fileCSV.getName() + " para escrita");
         }
     }
 
@@ -78,7 +78,7 @@ public class VideoRepository {
                 System.err.println("Não foi possível fechar o arquivo");
             }
         } catch (FileNotFoundException e) {
-            System.err.println("Não foi possível abrir o arquivo" + fileCSV.getName() + "para leitura");
+            System.err.println("Não foi possível abrir o arquivo " + fileCSV.getName() + " para leitura");
         } catch (IOException e) {
             System.err.println("Não foi possível ler a linha do arquivo" + fileCSV.getName());
         }

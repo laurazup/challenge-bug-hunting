@@ -23,6 +23,7 @@ public enum MenuType {
     }
 
     public static void showMenu() {
+        System.out.println("===== MENU PRINCIPAL =====");
         for (MenuType menu : MenuType.values()) {
             System.out.println(menu.ordinal() + 1 + ". " + menu.getDescription());
         }

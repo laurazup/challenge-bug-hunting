@@ -53,7 +53,9 @@ public class MenuService {
             }
             case EDIT_VIDEO -> {
                 int indexOfVideo;
+
                 System.out.println("===== Editar vídeo =====");
+
                 indexOfVideo = videoService.indexVideoEdit(
                         validateService.validateTitle()
                 );
@@ -77,7 +79,6 @@ public class MenuService {
                 videoService.removeVideo(
                         validateService.validateTitle()
                 );
-                System.out.println("Video removido com sucesso!");
                 isReInteractMenu = true;
             }
             case FILTER_VIDEOS_BY_CATEGORY -> {
@@ -108,7 +109,7 @@ public class MenuService {
                 isReInteractMenu = true;
             }
             case EXIT -> {
-                System.out.println("Saindo do Menu...");
+                System.out.println("===== Saindo do Menu...");
                 validateService.close();
                 // isReInteractMenu = false;
             }

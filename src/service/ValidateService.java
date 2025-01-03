@@ -22,6 +22,7 @@ public class ValidateService {
             System.out.print("Escolha uma opção entre 1 e " + rangeOfOptions + ": ");
             if (scanner.hasNextInt()) {
                 chosenOption = scanner.nextInt();
+                scanner.nextLine();
                 if (chosenOption > 0 && chosenOption <= rangeOfOptions) {
                     chosenOption--;
                     isNotValid = false;
@@ -29,7 +30,7 @@ public class ValidateService {
                     System.out.println("O número digitado está fora da faixa de valores.");
                 }
             } else {
-                System.out.println("A entrada digitada não é um número");
+                System.out.println("A entrada digitada não é um número inteiro.");
                 if (scanner.hasNextLine()) {
                     scanner.next();
                 }
@@ -47,7 +48,7 @@ public class ValidateService {
         while (isNotValid) {
             inputUser = scanner.nextLine();
             if (inputUser.isBlank()) {
-                System.err.println("O texto não pode ser vazia!");
+                System.err.println("O texto não pode ser vazio!");
             } else if (inputUser.contains(";")) {
                 System.err.println("O carácter ';' não é permitido no texto!");
             } else {
@@ -58,12 +59,12 @@ public class ValidateService {
         return inputUser;
     }
 
-    public String validateTitle(){
+    public String validateTitle() {
         System.out.print("Digite o título do vídeo(sem ';'): ");
         return validateText();
     }
 
-    public String validateDescription(){
+    public String validateDescription() {
         System.out.print("Digite a descrição do vídeo (sem ';'): ");
         return validateText();
     }
@@ -82,7 +83,7 @@ public class ValidateService {
                     System.out.println("O número digitado não é maior que zero.");
                 }
             } else {
-                System.out.println("A entrada digitada não é um número estritamente positivo");
+                System.out.println("A entrada digitada não é um número inteiro estritamente positivo");
                 if (scanner.hasNextLine()) {
                     scanner.next();
                 }
@@ -105,6 +106,7 @@ public class ValidateService {
             if (scanner.hasNextInt()) {
                 chosenOption = scanner.nextInt();
                 if (chosenOption > 0 && chosenOption <= rangeOfOptions) {
+                    scanner.nextLine();
                     chosenOption--;
                     isNotValid = false;
                 } else {
@@ -129,14 +131,26 @@ public class ValidateService {
 
         do {
             System.out.print("Digite a data de publicação no formato (dd/MM/yyyy): ");
+
+            while (!scanner.hasNext("\\d\\d/\\d\\d/\\d\\d\\d\\d")) {
+                System.err.print("A entrada digitada não está no formato (dd/MM/yyyy): ");
+                if (scanner.hasNextLine()) {
+                    scanner.nextLine();
+                }
+                if (scanner.hasNext()) {
+                    scanner.next();
+                }
+            }
+
             publicationDate = dateService.stringToDate(scanner.next());
             if (dateService.getError()) {
                 System.err.println("A data informada é inválida!");
+                dateService.resetErrorIndex();
                 isNotValid = true;
             } else {
                 isNotValid = false;
             }
-        }while (isNotValid);
+        } while (isNotValid);
 
 //        SimpleDateFormat simpleDateFormat;
 //
