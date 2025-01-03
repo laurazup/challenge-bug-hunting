@@ -8,7 +8,7 @@ public class DateService {
     static SimpleDateFormat simpleDateFormat;
     ParsePosition parsePosition;
 
-    DateService() {
+    public DateService() {
         try {
             simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
             simpleDateFormat.setLenient(false);

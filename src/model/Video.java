@@ -2,8 +2,6 @@ package model;
 
 import service.DateService;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 import java.util.regex.PatternSyntaxException;
@@ -51,7 +49,7 @@ public class Video {
         return durationInMinutes;
     }
 
-    public int getCategoryInOrdinal(){
+    public int getCategoryInOrdinal() {
         return category.ordinal();
     }
 
@@ -63,26 +61,20 @@ public class Video {
         return publicationDate;
     }
 
-    public String getPublicationDateInString(){
+    public String getPublicationDateInString() {
         return DateService.dateToString(publicationDate);
     }
 
     @Override
     public String toString() {
         String formattedOutput = "";
-        SimpleDateFormat simpleDateFormat;
 
-        try {
-            simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        formattedOutput += "Titulo    : " + title + "\n";
+        formattedOutput += "Descrição : " + description + "\n";
+        formattedOutput += "Duração   : " + durationInMinutes + "min.\n";
+        formattedOutput += "Categoria : " + category.getDescription() + "\n";
+        formattedOutput += "Publicação: " + getPublicationDateInString() + "\n";
 
-            formattedOutput += "Titulo    : " + title + "\n";
-            formattedOutput += "Descrição : " + description + "\n";
-            formattedOutput += "Duração   : " + durationInMinutes + "min.\n";
-            formattedOutput += "Categoria : " + category.getDescription() + "\n";
-            formattedOutput += "Publicação: " + simpleDateFormat.format(publicationDate) + "\n";
-        } catch (NullPointerException | IllegalArgumentException e) {
-            System.err.println("Não foi possível criar o formatador de datas");
-        }
 
         return formattedOutput;
     }
@@ -107,21 +99,18 @@ public class Video {
     public static Video receivesFromCSV(String tupleCSV) {
         try {
             String[] partsOfCSV = tupleCSV.split(";");
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            DateService dateService = new DateService();
+
             return new Video(partsOfCSV[0],
                     partsOfCSV[1],
                     Integer.parseInt(partsOfCSV[2]),
                     Integer.parseInt(partsOfCSV[3]),
-                    simpleDateFormat.parse(partsOfCSV[4]));
-
+                    dateService.stringToDate(partsOfCSV[4])
+            );
         } catch (PatternSyntaxException e) {
             System.err.println("Não foi possível dividir a linha do arquivo CSV");
         } catch (NumberFormatException e) {
-            System.err.println("Não foi possível converter a duração em minutos do Vídeo");
-        } catch (NullPointerException | IllegalArgumentException e) {
-            System.err.println("Não foi possível criar o formatador de datas");
-        } catch (ParseException e) {
-            System.err.println("Não foi possível transformar o texto em uma data");
+            System.err.println("Não foi possível converter a entrada do Vídeo em um número");
         }
 
         System.err.println("Não possível criar o vídeo");
@@ -136,7 +125,7 @@ public class Video {
             tupleCSV += description + ";";
             tupleCSV += durationInMinutes + ";";
             tupleCSV += category.ordinal() + ";";
-            tupleCSV += new SimpleDateFormat("dd/MM/AAAA").format(publicationDate);
+            tupleCSV += getPublicationDateInString();
         } catch (RuntimeException e) {
             System.out.println("Não foi possível converter a data.");
         }
