@@ -1,5 +1,7 @@
 package model;
 
+import service.DateService;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -59,6 +61,10 @@ public class Video {
 
     public Date getPublicationDate() {
         return publicationDate;
+    }
+
+    public String getPublicationDateInString(){
+        return DateService.dateToString(publicationDate);
     }
 
     @Override
