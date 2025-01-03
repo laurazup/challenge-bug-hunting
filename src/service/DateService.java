@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DateService {
-    SimpleDateFormat simpleDateFormat;
+    static SimpleDateFormat simpleDateFormat;
     ParsePosition parsePosition;
 
     DateService() {
@@ -18,7 +18,7 @@ public class DateService {
         }
     }
 
-    public String dateToString(Date date) {
+    public static String dateToString(Date date) {
         return simpleDateFormat.format(date);
     }
 
