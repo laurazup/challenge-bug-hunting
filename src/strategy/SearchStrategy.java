@@ -1,9 +1,9 @@
 package strategy;
 
-import model.Video;
+import model.VideoModel;
 
 import java.util.List;
 
 public interface SearchStrategy {
-    List<Video> search(List<Video> videos, String query);
+    List<VideoModel> search(List<VideoModel> videos, String query);
 }

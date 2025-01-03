@@ -1,0 +1,9 @@
+Título; Descrição; Duração; Categoria; Data de Publicação; Status
+VIDEO1;VIDEO1;3;FILME;10/10/2020
+
+video3; video3; 3; null; 01/10/2010
+video 2; video2; 5; SERIE; 10/10/2010; VALIDO
+video2; video2; 2; DOCUMENTARIO; 03/03/2003; VALIDO
+video5; video5; 5; SERIE; 10/10/2010; VALIDO
+video4; video4; 4; SERIE; 10/02/2020; VALIDO
+video11; video11; 2; SERIE; 10/10/2020; VALIDO

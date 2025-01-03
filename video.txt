@@ -1,0 +1,3 @@
+Título; Descrição; Duração; Categoria; Data de Publicação; Status
+video7; video7; 7; SERIE; 10/10/2020; VALIDO
+video7; video7; 7; DOCUMENTARIO; 10/10/2020; VALIDO

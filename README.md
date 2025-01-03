@@ -7,6 +7,7 @@ Aqui você vai encontrar os detalhes do que fazer antes de iniciar o desenvolvim
 
 ## 🛠 O que deverá ser desenvolvido
 
+
 Uma equipe de pessoas desenvolvedoras estava encarregada de criar um sistema simples para gerenciar informações de vídeos, como título, descrição e duração, armazenando esses dados em arquivos locais. O sistema foi desenvolvido utilizando Java com conceitos básicos de POO e manipulação de arquivos, mas, infelizmente, a equipe não seguiu as melhores práticas de desenvolvimento.
 
 O código está funcional, mas apresenta **bugs**, **problemas de organização** e **más práticas de programação**. Além disso, o sistema não possui validações adequadas e a interface de interação com o usuário (via terminal) é confusa.
@@ -28,12 +29,12 @@ Antes de começar, certifique-se de que você tem as ferramentas necessárias in
 
 O código será dividido em pacotes para organizar melhor as responsabilidades:
 
-- model: Contém a classe Video.
+- model: Contém as classes VideoModel e VideoParser.
 - repository: Contém a interface VideoRepository e sua implementação FileVideoRepository.
-- service: Contém a interface VideoService e sua implementação VideoServiceImpl.
-- strategy: Contém estratégias para busca de vídeos (SearchStrategy).
+- service: Contém a interface VideoService e sua implementação VideoManager.
+- strategy: Contém a interface SearchStrategy e sua implementação TitleSearchStrategy.
 - main: Contém a classe principal Main.
-
+- userInterface: que contém a classe FileHandler.
 Você deve clonar o repositório e analisar o código existente para entender como ele funciona.
 
 ### 3. Rodando o sistema
@@ -51,7 +52,7 @@ O sistema permite que o usuário:
 
 No entanto, o código atual apresenta problemas que você deverá corrigir.
 
-##📋 Instruções para entregar seu desafio
+## 📋 Instruções para entregar seu desafio
 
 1. Faça o Fork do repositório para o seu github.
 
@@ -115,7 +116,7 @@ Aqui estão os principais pontos que você deve corrigir no sistema:
 2. Más práticas de POO:
 
 - A classe Main mistura lógica de negócios, manipulação de arquivos e interação com o usuário.
-- A classe Video expõe diretamente seus atributos, violando o encapsulamento.
+- A classe model.Video expõe diretamente seus atributos, violando o encapsulamento.
 
 3. Interface confusa:
 
@@ -143,7 +144,7 @@ Aqui estão os principais pontos que você deve corrigir e implementar no sistem
    - Separe as responsabilidades do código em diferentes classes, como:
        - Uma classe para gerenciar a lógica de negócios (VideoManager).
        - Uma classe para manipular arquivos (FileHandler).
-   - Aplique o princípio de encapsulamento na classe Video, tornando os atributos privados e acessíveis apenas por getters e setters.
+   - Aplique o princípio de encapsulamento na classe model.Video, tornando os atributos privados e acessíveis apenas por getters e setters.
    - Modularize o código para evitar duplicação e melhorar a legibilidade.
 3. Validações
 
@@ -214,4 +215,4 @@ Alguns pontos devem ser levados em consideração durante a comunicação da pes
 ---
 
 ## 🚀 Prontos? Vamos caçar os bugs! 👾🔫
-   1Boa sorte no desafio! Lembre-se de que o objetivo principal é aprender e se divertir enquanto melhora suas habilidades. Se precisar de ajuda, não hesite em nos chamar no Chat. Estamos aqui para ajudar! 😊
+   Boa sorte no desafio! Lembre-se de que o objetivo principal é aprender e se divertir enquanto melhora suas habilidades. Se precisar de ajuda, não hesite em nos chamar no Chat. Estamos aqui para ajudar! 😊
