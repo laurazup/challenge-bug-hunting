@@ -6,18 +6,31 @@ import java.util.Scanner;
 public class InputValidator {
 
     public String isValidString(String string, Scanner scanner) {
-        System.out.print(string);
-        return scanner.nextLine();
+        String input;
+        do {
+            System.out.println(string);
+            input = scanner.nextLine();
+            if (input.trim().isEmpty()) {
+                System.out.println("Erro! O campo não pode estar vazio. Por favor, digite um valor!");
+            }
+        } while (input.trim().isEmpty());
+        return input;
     }
 
     public int isValidInt(String string, Scanner scanner) {
-        System.out.print(string);
-        while (!scanner.hasNextInt()) {
-            System.out.println("Erro! Por favor, digite um número!");
+        int value;
+        do {
+            System.out.println(string);
+            while (!scanner.hasNextInt()) {
+                System.out.println("Erro! Digite um número válido!");
+                scanner.nextLine();
+            }
+            value = scanner.nextInt();
             scanner.nextLine();
-        }
-        int value = scanner.nextInt();
-        scanner.nextLine();
+            if (value < 0) {
+                System.out.println("Erro! O número não pode ser negativo. Digite um número válido!");
+            }
+        } while (value < 0);
         return value;
     }
 
