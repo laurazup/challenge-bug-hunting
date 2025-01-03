@@ -20,8 +20,15 @@ public class DateService {
         return simpleDateFormat.format(date);
     }
 
-    public Date stringToDate(String dateFormat) throws ParseException {
-        return simpleDateFormat.parse(dateFormat);
+    public Date stringToDate(String dateFormat){
+        Date date = null;
+        try {
+            date = simpleDateFormat.parse(dateFormat);
+        } catch (ParseException e) {
+            System.err.println("Erro na análise data!");
+        }
+
+        return date;
     }
 
 }
