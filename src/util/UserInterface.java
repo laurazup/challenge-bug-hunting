@@ -38,7 +38,8 @@ public class UserInterface {
         System.out.println("1. Adicionar vídeo");
         System.out.println("2. Listar vídeos");
         System.out.println("3. Pesquisar vídeo por título");
-        System.out.println("4. Sair");
+        System.out.println("4. Deletar vídeo por título");
+        System.out.println("5. Sair");
     }
 
     private boolean handleMenuOption(int option) {
@@ -46,7 +47,8 @@ public class UserInterface {
             case 1 -> addVideo();
             case 2 -> listVideos();
             case 3 -> searchVideos();
-            case 4 -> {
+            case 4 ->  deleteVideo();
+            case 5 -> {
                 System.out.println("Saindo do sistema...");
                 return false;
             }
@@ -56,7 +58,7 @@ public class UserInterface {
 
                         """);
                 System.out.println("Opção inválida!\n" +
-                "Digite 1, 2, 3 ou 4");
+                "Digite 1, 2, 3, 4 ou 5");
             }
         }
         return true;
@@ -75,6 +77,17 @@ public class UserInterface {
             System.out.println("Vídeo adicionado com sucesso!");
         } catch (Exception e) {
             System.out.println("Erro ao adicionar o vídeo: " + e.getMessage());
+        }
+    }
+
+    private void deleteVideo() {
+        try {
+            String titulo = inputValidator.isValidString("Digite o título do vídeo que deseja deletar: ", scanner);
+            videoService.deleteVideo(titulo);
+            System.out.println("Vídeo deletado com sucesso!");
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 

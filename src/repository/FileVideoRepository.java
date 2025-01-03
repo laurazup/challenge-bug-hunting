@@ -3,7 +3,6 @@ package repository;
 import model.Video;
 
 import java.io.*;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,4 +41,36 @@ public class FileVideoRepository implements VideoRepository {
         }
         return videos;
     }
+
+    @Override
+    public void deleteByTitle(String title) {
+        List<Video> videos = findAll();
+        boolean videoFound = false;
+
+        List<Video> updatedVideos = new ArrayList<>();
+        for (Video video : videos) {
+            if (!video.getTitulo().equalsIgnoreCase(title)) {
+                updatedVideos.add(video);
+            } else {
+                videoFound = true;
+            }
+        }
+
+        if (!videoFound) {
+            System.out.println("Vídeo com o título '" + title + "' não encontrado.");
+            return;
+        }
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+            for (Video video : updatedVideos) {
+                bw.write(video.getTitulo() + ";" + video.getDescricao() + ";" +
+                        video.getDuracao() + ";" + video.getCategoria() + ";" + video.getDataPublicacao());
+                bw.newLine();
+            }
+            System.out.println("Vídeo com o título '" + title + "' foi deletado com sucesso.");
+        } catch (IOException e) {
+            System.out.println("Erro ao deletar o vídeo: " + e.getMessage());
+        }
+    }
 }
+
