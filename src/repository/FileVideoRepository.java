@@ -16,9 +16,8 @@ public class FileVideoRepository implements VideoRepository {
     @Override
     public void save(Video video) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
-//            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            bw.write( video.getTitulo() + ";" + video.getDescricao() + ";" +
-                    video.getDuracao() + ";" + video.getCategoria() + ";" + video.getDataPublicacao());
+            bw.write( video.getTitle() + ";" + video.getDescription() + ";" +
+                    video.getDuration() + ";" + video.getCategory() + ";" + video.getDate());
             bw.newLine();
         } catch (IOException e) {
             System.out.println("Algo deu errado! O vídeo não foi salvo!" + e.getMessage());
@@ -49,7 +48,7 @@ public class FileVideoRepository implements VideoRepository {
 
         List<Video> updatedVideos = new ArrayList<>();
         for (Video video : videos) {
-            if (!video.getTitulo().equalsIgnoreCase(title)) {
+            if (!video.getTitle().equalsIgnoreCase(title)) {
                 updatedVideos.add(video);
             } else {
                 videoFound = true;
@@ -63,8 +62,8 @@ public class FileVideoRepository implements VideoRepository {
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
             for (Video video : updatedVideos) {
-                bw.write(video.getTitulo() + ";" + video.getDescricao() + ";" +
-                        video.getDuracao() + ";" + video.getCategoria() + ";" + video.getDataPublicacao());
+                bw.write(video.getTitle() + ";" + video.getDescription() + ";" +
+                        video.getDuration() + ";" + video.getCategory() + ";" + video.getDate());
                 bw.newLine();
             }
             System.out.println("Vídeo com o título '" + title + "' foi deletado com sucesso.");

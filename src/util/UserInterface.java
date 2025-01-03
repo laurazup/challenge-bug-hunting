@@ -1,6 +1,6 @@
 package util;
 
-import model.Categoria;
+import model.Category;
 import model.Video;
 import service.VideoService;
 import strategy.SearchStrategy;
@@ -26,14 +26,14 @@ public class UserInterface {
     public void start() {
         boolean running = true;
         while (running) {
-            printMenu();
+            Menu();
             int option = inputValidator.isValidInt("Escolha uma opção: ", scanner);
-            running = handleMenuOption(option);
+            running = menuOptions(option);
         }
 
     }
 
-    private void printMenu() {
+    private void Menu() {
         System.out.println("\n=== Sistema de Gerenciamento de Vídeos ===");
         System.out.println("1. Adicionar vídeo");
         System.out.println("2. Listar vídeos");
@@ -42,7 +42,7 @@ public class UserInterface {
         System.out.println("5. Sair");
     }
 
-    private boolean handleMenuOption(int option) {
+    private boolean menuOptions(int option) {
         switch (option) {
             case 1 -> addVideo();
             case 2 -> listVideos();
@@ -66,13 +66,13 @@ public class UserInterface {
 
     private void addVideo() {
         try {
-            String titulo = inputValidator.isValidString("Digite o título do vídeo: ", scanner);
-            String descricao = inputValidator.isValidString("Digite a descrição do vídeo: ", scanner);
-            int duracao = inputValidator.isValidInt("Digite a duração do vídeo (em minutos): ", scanner);
-            Categoria categoria = inputValidator.getCategoriaInput("Digite a categoria do vídeo: ", scanner);
-            String dataStr = inputValidator.isValidDate("Digite a data de publicação (dd/MM/yyyy): ", scanner);
+            String title = inputValidator.isValidString("Digite o título do vídeo: ", scanner);
+            String descripton = inputValidator.isValidString("Digite a descrição do vídeo: ", scanner);
+            int duration = inputValidator.isValidInt("Digite a duração do vídeo (em minutos): ", scanner);
+            Category category = inputValidator.isValidCategory("Digite a categoria do vídeo: ", scanner);
+            String dateStr = inputValidator.isValidDate("Digite a data de publicação (dd/MM/yyyy): ", scanner);
 
-            Video video = new Video(titulo, descricao, duracao, categoria, dataStr);
+            Video video = new Video(title, descripton, duration, category, dateStr);
             videoService.addVideo(video);
             System.out.println("Vídeo adicionado com sucesso!");
         } catch (Exception e) {
@@ -102,12 +102,12 @@ public class UserInterface {
 
     private void searchVideos() {
         String query = inputValidator.isValidString("Título do vídeo que deseja buscar: ", scanner);
-        List<Video> resultados = searchStrategy.search(videoService.listVideos(), query);
-        if (resultados.isEmpty()) {
-            System.out.println("Nenhum vídeo foi encontrado com esse título." +
+        List<Video> results = searchStrategy.search(videoService.listVideos(), query);
+        if (results.isEmpty()) {
+            System.out.println("Nenhum vídeo foi encontrado com esse título. " +
                     "Verifique o que você digitou!");
         } else {
-            resultados.forEach(outputFormatter::printVideo);
+            results.forEach(outputFormatter::printVideo);
         }
     }
 }

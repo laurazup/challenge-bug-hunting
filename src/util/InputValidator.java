@@ -1,6 +1,6 @@
 package util;
 
-import model.Categoria;
+import model.Category;
 
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
@@ -84,12 +84,11 @@ public class InputValidator {
         return input;
     }
 
-
-    public Categoria getCategoriaInput(String string, Scanner scanner) {
+    public Category isValidCategory(String string, Scanner scanner) {
         while (true) {
             try {
                 String input = isValidString(string, scanner);
-                return Categoria.isValidCategoria(input);
+                return Category.isValidCategoria(input);
             } catch (IllegalArgumentException e) {
                 System.out.println("""
                         Categoria inválida. Tente novamente!
