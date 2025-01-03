@@ -3,7 +3,6 @@ package service;
 import model.CategoryType;
 
 // import java.text.ParseException;
-import java.text.ParsePosition;
 // import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
@@ -125,13 +124,13 @@ public class ValidateService {
 
     public Date validatePublicationDate() {
         boolean isNotValid;
-        ParsePosition parsePosition = new ParsePosition(0);
+        DateService dateService = new DateService();
         Date publicationDate;
 
         do {
             System.out.print("Digite a data de publicação no formato (dd/MM/yyyy): ");
-            publicationDate = DateService.stringToDate(scanner.next(), parsePosition);
-            if (parsePosition.getErrorIndex() != -1) {
+            publicationDate = dateService.stringToDate(scanner.next());
+            if (dateService.getError()) {
                 System.err.println("A data informada é inválida!");
                 isNotValid = true;
             } else {
