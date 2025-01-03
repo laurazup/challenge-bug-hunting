@@ -31,7 +31,6 @@ public class VideoService {
         for (Video video : listOfVideos) {
             System.out.println(video.toString());
         }
-        System.out.println();
     }
 
     public void searchVideosByTitle(String titleToSearch) {
