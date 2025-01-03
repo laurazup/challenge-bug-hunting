@@ -2,8 +2,9 @@ package service;
 
 import model.CategoryType;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+// import java.text.ParseException;
+import java.text.ParsePosition;
+// import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -123,26 +124,39 @@ public class ValidateService {
     }
 
     public Date validatePublicationDate() {
-        boolean isNotValid = true;
-        SimpleDateFormat simpleDateFormat;
-        Date publicationDate = null;
+        boolean isNotValid;
+        ParsePosition parsePosition = new ParsePosition(0);
+        Date publicationDate;
 
-        while (isNotValid) {
-            try {
-                simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                simpleDateFormat.setLenient(false);
-
-                try {
-                    System.out.print("Digite a data de publicação no formato (dd/MM/yyyy): ");
-                    publicationDate = simpleDateFormat.parse(scanner.next());
-                    isNotValid = false;
-                } catch (ParseException e) {
-                    System.err.println("A data informada é inválida!");
-                }
-            } catch (NullPointerException | IllegalArgumentException e) {
-                System.err.println("Não foi possível criar o formatador de datas");
+        do {
+            System.out.print("Digite a data de publicação no formato (dd/MM/yyyy): ");
+            publicationDate = DateService.stringToDate(scanner.next(), parsePosition);
+            if (parsePosition.getErrorIndex() != -1) {
+                System.err.println("A data informada é inválida!");
+                isNotValid = true;
+            } else {
+                isNotValid = false;
             }
-        }
+        }while (isNotValid);
+
+//        SimpleDateFormat simpleDateFormat;
+//
+//        while (isNotValid) {
+//            try {
+//                simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//                simpleDateFormat.setLenient(false);
+//
+//                try {
+//                    System.out.print("Digite a data de publicação no formato (dd/MM/yyyy): ");
+//                    publicationDate = simpleDateFormat.parse(scanner.next());
+//                    isNotValid = false;
+//                } catch (ParseException e) {
+//                    System.err.println("A data informada é inválida!");
+//                }
+//            } catch (NullPointerException | IllegalArgumentException e) {
+//                System.err.println("Não foi possível criar o formatador de datas");
+//            }
+//        }
 
         return publicationDate;
     }

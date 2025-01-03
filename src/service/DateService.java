@@ -1,11 +1,12 @@
 package service;
 
 import java.text.ParseException;
+import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DateService {
-    SimpleDateFormat simpleDateFormat;
+    static SimpleDateFormat simpleDateFormat;
 
     DateService() {
         try {
@@ -16,15 +17,15 @@ public class DateService {
         }
     }
 
-    public String dateToString(Date date) {
+    public static String dateToString(Date date) {
         return simpleDateFormat.format(date);
     }
 
-    public Date stringToDate(String dateFormat){
+    public static Date stringToDate(String dateFormat, ParsePosition parsePosition){
         Date date = null;
         try {
-            date = simpleDateFormat.parse(dateFormat);
-        } catch (ParseException e) {
+            date = simpleDateFormat.parse(dateFormat, parsePosition);
+        } catch (NullPointerException e) {
             System.err.println("Erro na análise data!");
         }
 
