@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.Date;
 
 public class VideoService {
+    public static final int VIDEO_NOT_FOUND = -1;
     private final ArrayList<Video> listOfVideos;
     private final VideoRepository videoRepository;
 
@@ -19,7 +20,7 @@ public class VideoService {
     public void addVideo(Video video) {
         int indexOfVideo = listOfVideos.indexOf(video);
 
-        if (indexOfVideo == -1) {
+        if (indexOfVideo == VIDEO_NOT_FOUND) {
             listOfVideos.add(video);
             videoRepository.saveListOfVideos(listOfVideos);
         } else {
@@ -56,7 +57,7 @@ public class VideoService {
 
         indexOfVideo = listOfVideos.indexOf(stubVideo);
 
-        if (indexOfVideo != -1) {
+        if (indexOfVideo != VIDEO_NOT_FOUND) {
             chosenVideo = listOfVideos.get(indexOfVideo);
             System.out.println("Video encontrado");
             System.out.println(chosenVideo);
@@ -104,7 +105,7 @@ public class VideoService {
                 0,
                 new Date(System.currentTimeMillis())));
 
-        if (indexOfVideo != -1) {
+        if (indexOfVideo != VIDEO_NOT_FOUND) {
             listOfVideos.remove(indexOfVideo);
             videoRepository.saveListOfVideos(listOfVideos);
             System.out.println("Video " + titleOfVideo + " excluído com sucesso!");

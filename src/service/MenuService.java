@@ -6,6 +6,7 @@ import model.MenuType;
 import model.Video;
 
 public class MenuService {
+    private static final int VIDEO_NOT_FOUND = -1;
     VideoService videoService;
     ValidateService validateService;
 
@@ -61,7 +62,7 @@ public class MenuService {
                         validateService.validateTitle()
                 );
 
-                if (indexOfVideo != -1) {
+                if (indexOfVideo != VIDEO_NOT_FOUND) {
                     boolean hasChange = false;
 
                     while (interactAttribute(indexOfVideo)) {
