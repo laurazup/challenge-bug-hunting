@@ -6,20 +6,23 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileVideoRepository implements VideoRepository {
+public class FileVideoRepositoryImpl implements VideoRepository {
     private final File file;
 
-    public FileVideoRepository(String filePath) {
+    public FileVideoRepositoryImpl(String filePath) {
         this.file = new File(filePath);
     }
 
     @Override
     public void save(Video video) {
+        if (video == null){
+            throw new IllegalArgumentException("O vídeo não pode ser nulo.");
+        }
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
             bw.write(video.toString());
             bw.newLine();
         } catch (IOException e) {
-            // Ignorar erros por enquanto
+            System.out.println("Erro ao salvar o vídeo");
         }
     }
 
@@ -35,7 +38,7 @@ public class FileVideoRepository implements VideoRepository {
                 }
             }
         } catch (IOException e) {
-            // Ignorar erros por enquanto
+            System.out.println("Erro ao ler o vídeo.");
         }
         return videos;
     }
