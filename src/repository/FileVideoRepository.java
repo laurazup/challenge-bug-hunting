@@ -19,7 +19,7 @@ public class FileVideoRepository implements VideoRepository {
             bw.write(video.toString());
             bw.newLine();
         } catch (IOException e) {
-            // Ignorar erros por enquanto
+            System.out.println("Erro ao salvar o vídeo: " + e.getMessage());
         }
     }
 
@@ -35,8 +35,46 @@ public class FileVideoRepository implements VideoRepository {
                 }
             }
         } catch (IOException e) {
-            // Ignorar erros por enquanto
+            System.out.println("Erro ao ler o vídeo: " + e.getMessage());
         }
         return videos;
+    }
+
+    @Override
+    public void update(Video updatedVideo, String tituloOriginal) {
+        List<Video> videos = findAll();
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+            for (Video video : videos) {
+                if (video.getTitulo().equals(tituloOriginal)) {
+                    bw.write(updatedVideo.toCSV());
+                } else {
+                    bw.write(video.toCSV());
+                }
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Erro ao atualizar o vídeo: " + e.getMessage());
+        }
+    }
+
+    public void saveAll(List<Video> videos) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+            for (Video video : videos) {
+                writer.write(video.toCSV());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Erro ao salvar os vídeos no arquivo.", e);
+        }
+    }
+
+    /**
+     * Retorna todos os vídeos organizados por data de publicação.
+     *
+     * @return Lista de vídeos ordenada por data de publicação.
+     */
+    public List<Video> findAllOrderedByDate() {
+        List<Video> videos = findAll();
+        return Video.organizarPorDataPublicacao(videos);
     }
 }
