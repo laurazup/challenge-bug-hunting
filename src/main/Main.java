@@ -1,75 +1,57 @@
 package main;
 
-import model.Video;
 import repository.FileVideoRepository;
-import service.VideoService;
-import service.VideoServiceImpl;
+import repository.VideoRepository;
+import service.VideoManager;
 import strategy.SearchStrategy;
 import strategy.TitleSearchStrategy;
+import util.Menu;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        VideoService videoService = new VideoServiceImpl(new FileVideoRepository("videos.txt"));
+        VideoRepository videoRepository = new FileVideoRepository("videos.txt");
+        VideoManager videoManager = new VideoManager(videoRepository);
         SearchStrategy searchStrategy = new TitleSearchStrategy();
+        boolean isManuOpen = true;
+        Menu menu = new Menu();
 
-        while (true) {
-            System.out.println("\n=== Sistema de Gerenciamento de Vídeos ===");
-            System.out.println("1. Adicionar vídeo");
-            System.out.println("2. Listar vídeos");
-            System.out.println("3. Pesquisar vídeo por título");
-            System.out.println("4. Sair");
-            System.out.print("Escolha uma opção: ");
-            int opcao = scanner.nextInt();
-            scanner.nextLine(); // Consumir a quebra de linha
+        while (isManuOpen) {
+            menu.exibirMenu();
+            int opcao = -1;
+            try {
+                opcao = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Erro: Por favor, insira um número válido.");
+            }
 
-            if (opcao == 1) {
-                System.out.print("Digite o título do vídeo: ");
-                String titulo = scanner.nextLine();
-                System.out.print("Digite a descrição do vídeo: ");
-                String descricao = scanner.nextLine();
-                System.out.print("Digite a duração do vídeo (em minutos): ");
-                int duracao = scanner.nextInt();
-                scanner.nextLine(); // Consumir a quebra de linha
-                System.out.print("Digite a categoria do vídeo: ");
-                String categoria = scanner.nextLine();
-                System.out.print("Digite a data de publicação (dd/MM/yyyy): ");
-                String dataStr = scanner.nextLine();
+            switch (opcao) {
+                case 1:
 
-                try {
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                    Date dataPublicacao = sdf.parse(dataStr);
-                    Video video = new Video(titulo, descricao, duracao, categoria, dataPublicacao);
-                    videoService.addVideo(video);
-                    System.out.println("Vídeo adicionado com sucesso!");
-                } catch (Exception e) {
-                    System.out.println("Erro ao adicionar vídeo.");
-                }
-            } else if (opcao == 2) {
-                List<Video> videos = videoService.listVideos();
-                for (Video video : videos) {
-                    System.out.println(video);
-                }
-            } else if (opcao == 3) {
-                System.out.print("Digite o título para busca: ");
-                String query = scanner.nextLine();
-                List<Video> resultados = searchStrategy.search(videoService.listVideos(), query);
-                for (Video video : resultados) {
-                    System.out.println(video);
-                }
-            } else if (opcao == 4) {
-                System.out.println("Saindo do sistema...");
-                break;
-            } else {
-                System.out.println("Opção inválida.");
+                    videoManager.addVideo();
+                    break;
+                case 2:
+                    videoManager.listVideos().forEach(System.out::println);
+                    break;
+                case 3:
+                    System.out.print("Digite o título para busca: ");
+                    String query = scanner.nextLine();
+                    searchStrategy.search(videoManager.listVideos(), query).forEach(System.out::println);
+                    break;
+                case 4:
+                    System.out.print("Digite o título do vídeo a ser editado: ");
+                    String titleToEdit = scanner.nextLine();
+                    videoManager.updateVideo(titleToEdit);
+                    break;
+                case 5:
+                    System.out.println("Saindo do sistema...");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Opção inválida.");
             }
         }
-
-        scanner.close();
     }
 }

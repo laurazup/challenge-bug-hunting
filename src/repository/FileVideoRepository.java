@@ -1,42 +1,47 @@
 package repository;
 
 import model.Video;
+import util.FileHandler;
 
-import java.io.*;
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
 
 public class FileVideoRepository implements VideoRepository {
-    private final File file;
+    private final String filePath;
 
     public FileVideoRepository(String filePath) {
-        this.file = new File(filePath);
+        this.filePath = filePath;
     }
 
     @Override
     public void save(Video video) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
-            bw.write(video.toString());
-            bw.newLine();
+        try {
+            FileHandler.writeLine(filePath, video.toString(), true);
         } catch (IOException e) {
-            // Ignorar erros por enquanto
+            System.err.println("Erro ao salvar o vídeo: " + e.getMessage());
         }
     }
 
     @Override
     public List<Video> findAll() {
-        List<Video> videos = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                Video video = Video.fromString(line);
-                if (video != null) {
-                    videos.add(video);
-                }
+        try {
+            return FileHandler.readLines(filePath).stream()
+                    .map(Video::fromString)
+                    .toList();
+        } catch (IOException e) {
+            System.err.println("Erro ao ler os vídeos: " + e.getMessage());
+            return List.of();
+        }
+    }
+
+    @Override
+    public void saveAll(List<Video> videos) {
+        try {
+            for (Video video : videos) {
+                FileHandler.writeLine(filePath, video.toString(), false);
             }
         } catch (IOException e) {
-            // Ignorar erros por enquanto
+            System.err.println("Erro ao salvar os vídeos: " + e.getMessage());
         }
-        return videos;
     }
 }

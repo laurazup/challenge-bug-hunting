@@ -22,20 +22,40 @@ public class Video {
         return titulo;
     }
 
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
     public String getDescricao() {
         return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public int getDuracao() {
         return duracao;
     }
 
+    public void setDuracao(int duracao) {
+        this.duracao = duracao;
+    }
+
     public String getCategoria() {
         return categoria;
     }
 
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
     public Date getDataPublicacao() {
         return dataPublicacao;
+    }
+
+    public void setDataPublicacao(Date dataPublicacao) {
+        this.dataPublicacao = dataPublicacao;
     }
 
     @Override
@@ -50,7 +70,7 @@ public class Video {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             return new Video(partes[0], partes[1], Integer.parseInt(partes[2]), partes[3], sdf.parse(partes[4]));
         } catch (Exception e) {
-            return null; // Ignora erros de parsing
+            return null;
         }
     }
 }

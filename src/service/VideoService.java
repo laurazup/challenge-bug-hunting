@@ -7,4 +7,5 @@ import java.util.List;
 public interface VideoService {
     void addVideo(Video video);
     List<Video> listVideos();
+    void updateVideo(String title, Video updatedVideo);
 }

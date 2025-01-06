@@ -21,4 +21,17 @@ public class VideoServiceImpl implements VideoService {
     public List<Video> listVideos() {
         return repository.findAll();
     }
+
+    @Override
+    public void updateVideo(String title, Video updatedVideo) {
+        List<Video> videos = repository.findAll();
+        for (int i = 0; i < videos.size(); i++) {
+            if (videos.get(i).getTitulo().equalsIgnoreCase(title)) {
+                videos.set(i, updatedVideo);
+                repository.saveAll(videos);
+                return;
+            }
+        }
+        System.out.println("Erro: Nenhum vídeo encontrado com o título fornecido.");
+    }
 }
