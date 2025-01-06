@@ -16,10 +16,11 @@ public class FileVideoRepository implements VideoRepository {
     @Override
     public void save(Video video) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
-            bw.write(video.toString());
+            bw.write( video.getTitle() + ";" + video.getDescription() + ";" +
+                    video.getDuration() + ";" + video.getCategory() + ";" + video.getDate());
             bw.newLine();
         } catch (IOException e) {
-            // Ignorar erros por enquanto
+            System.out.println("Algo deu errado! O vídeo não foi salvo!" + e.getMessage());
         }
     }
 
@@ -35,8 +36,40 @@ public class FileVideoRepository implements VideoRepository {
                 }
             }
         } catch (IOException e) {
-            // Ignorar erros por enquanto
+            System.out.println("Erro! Não foi possível listar os vídeos salvos" + e.getMessage());
         }
         return videos;
     }
+
+    @Override
+    public void deleteByTitle(String title) {
+        List<Video> videos = findAll();
+        boolean videoFound = false;
+
+        List<Video> updatedVideos = new ArrayList<>();
+        for (Video video : videos) {
+            if (!video.getTitle().equalsIgnoreCase(title)) {
+                updatedVideos.add(video);
+            } else {
+                videoFound = true;
+            }
+        }
+
+        if (!videoFound) {
+            System.out.println("Vídeo com o título '" + title + "' não encontrado.");
+            return;
+        }
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+            for (Video video : updatedVideos) {
+                bw.write(video.getTitle() + ";" + video.getDescription() + ";" +
+                        video.getDuration() + ";" + video.getCategory() + ";" + video.getDate());
+                bw.newLine();
+            }
+            System.out.println("Vídeo com o título '" + title + "' foi deletado com sucesso.");
+        } catch (IOException e) {
+            System.out.println("Erro ao deletar o vídeo: " + e.getMessage());
+        }
+    }
 }
+
