@@ -1,0 +1,167 @@
+package service;
+
+import model.CategoryType;
+
+import java.util.Date;
+import java.util.Scanner;
+
+public class ValidateService {
+    private static Scanner scanner;
+
+    public ValidateService() {
+        scanner = new Scanner(System.in);
+    }
+
+    public int validateOption(int rangeOfOptions, int exitOrdinal) {
+        boolean isNotValid = true;
+        int chosenOption = exitOrdinal;
+
+        while (isNotValid) {
+            System.out.print("Escolha uma opção entre 1 e " + rangeOfOptions + ": ");
+            if (scanner.hasNextInt()) {
+                chosenOption = scanner.nextInt();
+                scanner.nextLine();
+                if (chosenOption > 0 && chosenOption <= rangeOfOptions) {
+                    chosenOption--;
+                    isNotValid = false;
+                } else {
+                    System.out.println("O número digitado está fora da faixa de valores.");
+                }
+            } else {
+                System.out.println("A entrada digitada não é um número inteiro.");
+                if (scanner.hasNextLine()) {
+                    scanner.next();
+                }
+                scanner.nextLine();
+            }
+        }
+
+        return chosenOption;
+    }
+
+    private String validateText() {
+        boolean isNotValid = true;
+        String inputUser = "";
+
+        while (isNotValid) {
+            inputUser = scanner.nextLine();
+            if (inputUser.isBlank()) {
+                System.err.println("O texto não pode ser vazio!");
+            } else if (inputUser.contains(";")) {
+                System.err.println("O carácter ';' não é permitido no texto!");
+            } else {
+                isNotValid = false;
+            }
+        }
+
+        return inputUser;
+    }
+
+    public String validateTitle() {
+        System.out.print("Digite o título do vídeo(sem ';'): ");
+        return validateText();
+    }
+
+    public String validateDescription() {
+        System.out.print("Digite a descrição do vídeo (sem ';'): ");
+        return validateText();
+    }
+
+    public int validateDurationInMinutes() {
+        boolean isNotValid = true;
+        int chosenOption = 1;
+
+        while (isNotValid) {
+            System.out.print("Digite a duração do vídeo (em minutos): ");
+            if (scanner.hasNextInt()) {
+                chosenOption = scanner.nextInt();
+                if (chosenOption > 0) {
+                    isNotValid = false;
+                } else {
+                    System.out.println("O número digitado não é maior que zero.");
+                }
+            } else {
+                System.out.println("A entrada digitada não é um número inteiro estritamente positivo");
+                if (scanner.hasNextLine()) {
+                    scanner.next();
+                }
+                scanner.nextLine();
+            }
+        }
+
+        return chosenOption;
+    }
+
+    public int validateCategory() {
+        boolean isNotValid = true;
+        int rangeOfOptions = CategoryType.values().length;
+        int chosenOption = 0;
+
+        CategoryType.showCategory();
+
+        while (isNotValid) {
+            System.out.print("Escolha uma categoria entre 1 e " + rangeOfOptions + ": ");
+            if (scanner.hasNextInt()) {
+                chosenOption = scanner.nextInt();
+                if (chosenOption > 0 && chosenOption <= rangeOfOptions) {
+                    scanner.nextLine();
+                    chosenOption--;
+                    isNotValid = false;
+                } else {
+                    System.out.println("O número digitado está fora da faixa de valores.");
+                }
+            } else {
+                System.out.println("A entrada digitada não é um número");
+                if (scanner.hasNextLine()) {
+                    scanner.next();
+                }
+                scanner.nextLine();
+            }
+        }
+
+        return chosenOption;
+    }
+
+    public Date validatePublicationDate() {
+        boolean isNotValid;
+        DateService dateService = new DateService();
+        Date publicationDate;
+
+        do {
+            System.out.print("Digite a data de publicação no formato (dd/MM/yyyy): ");
+
+            publicationDate = dateService.stringToDate(validateDateFormat());
+            if (dateService.getError()) {
+                System.err.println("A data informada é inválida!");
+                dateService.resetErrorIndex();
+                isNotValid = true;
+            } else {
+                isNotValid = false;
+            }
+        } while (isNotValid);
+
+        return publicationDate;
+    }
+
+    private String validateDateFormat() {
+        String inputDate;
+
+        while (!scanner.hasNext("\\d\\d/\\d\\d/\\d\\d\\d\\d")) {
+            System.err.print("A entrada digitada não está no formato (dd/MM/yyyy): ");
+            if (scanner.hasNextLine()) {
+                scanner.nextLine();
+            }
+            if (scanner.hasNext()) {
+                scanner.next();
+            }
+        }
+
+        inputDate = scanner.next();
+
+        return inputDate;
+    }
+
+    public void close() {
+        scanner.close();
+    }
+}

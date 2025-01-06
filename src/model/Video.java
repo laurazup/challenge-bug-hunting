@@ -1,56 +1,136 @@
 package model;
 
-import java.text.SimpleDateFormat;
+import service.DateService;
+
 import java.util.Date;
+import java.util.Objects;
+import java.util.regex.PatternSyntaxException;
 
 public class Video {
-    private String titulo;
-    private String descricao;
-    private int duracao; // em minutos
-    private String categoria;
-    private Date dataPublicacao;
+    private String title;
+    private String description;
+    private int durationInMinutes;
+    private CategoryType category;
+    private Date publicationDate;
 
-    public Video(String titulo, String descricao, int duracao, String categoria, Date dataPublicacao) {
-        this.titulo = titulo;
-        this.descricao = descricao;
-        this.duracao = duracao;
-        this.categoria = categoria;
-        this.dataPublicacao = dataPublicacao;
+    public Video(String title, String description, int durationInMinutes, int category, Date publicationDate) {
+        this.title = title;
+        this.description = description;
+        this.durationInMinutes = durationInMinutes;
+        this.category = CategoryType.values()[category];
+        this.publicationDate = publicationDate;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public int getDuracao() {
-        return duracao;
+    public void setDurationInMinutes(int durationInMinutes) {
+        this.durationInMinutes = durationInMinutes;
     }
 
-    public String getCategoria() {
-        return categoria;
+    public void setCategory(int categoryOrdinal) {
+        this.category = CategoryType.values()[categoryOrdinal];
     }
 
-    public Date getDataPublicacao() {
-        return dataPublicacao;
+    public void setPublicationDate(Date publicationDate) {
+        this.publicationDate = publicationDate;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public int getDurationInMinutes() {
+        return durationInMinutes;
+    }
+
+    public int getCategoryInOrdinal() {
+        return category.ordinal();
+    }
+
+    public String getCategoryInString() {
+        return category.getDescription();
+    }
+
+    public Date getPublicationDate() {
+        return publicationDate;
+    }
+
+    public String getPublicationDateInString() {
+        return DateService.dateToString(publicationDate);
     }
 
     @Override
     public String toString() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return titulo + ";" + descricao + ";" + duracao + ";" + categoria + ";" + sdf.format(dataPublicacao);
+        String formattedOutput = "";
+
+        formattedOutput += "Titulo    : " + title + "\n";
+        formattedOutput += "Descrição : " + description + "\n";
+        formattedOutput += "Duração   : " + durationInMinutes + "min.\n";
+        formattedOutput += "Categoria : " + category.getDescription() + "\n";
+        formattedOutput += "Publicação: " + getPublicationDateInString() + "\n";
+
+
+        return formattedOutput;
     }
 
-    public static Video fromString(String linha) {
-        try {
-            String[] partes = linha.split(";");
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            return new Video(partes[0], partes[1], Integer.parseInt(partes[2]), partes[3], sdf.parse(partes[4]));
-        } catch (Exception e) {
-            return null; // Ignora erros de parsing
+    @Override
+    public boolean equals(Object potentialVideo) {
+        if (potentialVideo == null ||
+                this.getClass() != potentialVideo.getClass()) {
+            return false;
         }
+        Video newVideo = (Video) potentialVideo;
+        return Objects.equals(this.title.toUpperCase(), newVideo.title.toUpperCase());
+    }
+
+    // ¡¡¡ THE VIDEO CLASS CONSIDERS THE TITLE TO BE A PRIMARY KEY !!!
+    // This should be checked in the business rules of video services
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(this.title);
+    }
+
+    public static Video receivesFromCSV(String tupleCSV) {
+        try {
+            String[] partsOfCSV = tupleCSV.split(";");
+            DateService dateService = new DateService();
+
+            return new Video(partsOfCSV[0],
+                    partsOfCSV[1],
+                    Integer.parseInt(partsOfCSV[2]),
+                    Integer.parseInt(partsOfCSV[3]),
+                    dateService.stringToDate(partsOfCSV[4])
+            );
+        } catch (PatternSyntaxException e) {
+            System.err.println("Não foi possível dividir a linha do arquivo CSV");
+        } catch (NumberFormatException e) {
+            System.err.println("Não foi possível converter a entrada do Vídeo em um número");
+        }
+
+        System.err.println("Não possível criar o vídeo");
+        return null;
+    }
+
+    public String sendsToCSV() {
+        String tupleCSV = "";
+
+        try {
+            tupleCSV += title + ";";
+            tupleCSV += description + ";";
+            tupleCSV += durationInMinutes + ";";
+            tupleCSV += category.ordinal() + ";";
+            tupleCSV += getPublicationDateInString();
+        } catch (RuntimeException e) {
+            System.out.println("Não foi possível converter a data.");
+        }
+
+        return tupleCSV;
     }
 }
