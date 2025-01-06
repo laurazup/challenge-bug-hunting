@@ -11,6 +11,13 @@ public class FileVideoRepository implements VideoRepository {
 
     public FileVideoRepository(String filePath) {
         this.file = new File(filePath);
+        if (!file.exists()){
+            try {
+                file.createNewFile();
+            } catch (IOException e){
+                throw new RuntimeException("Não foi possivel criar o arquivo: " +filePath, e);
+            }
+        }
     }
 
     @Override
@@ -19,7 +26,7 @@ public class FileVideoRepository implements VideoRepository {
             bw.write(video.toString());
             bw.newLine();
         } catch (IOException e) {
-            // Ignorar erros por enquanto
+            throw new RuntimeException("Erro ao salvar o vídeo no arquivo: " + file.getAbsolutePath(), e);
         }
     }
 
@@ -30,12 +37,14 @@ public class FileVideoRepository implements VideoRepository {
             String line;
             while ((line = br.readLine()) != null) {
                 Video video = Video.fromString(line);
-                if (video != null) {
+                if (video == null) {
+                    System.err.println("Dado do video invalido" + line);
+                } else {
                     videos.add(video);
                 }
             }
         } catch (IOException e) {
-            // Ignorar erros por enquanto
+            throw new RuntimeException("Erro ao salvar o vídeo no arquivo: " + file.getAbsolutePath(), e);
         }
         return videos;
     }
