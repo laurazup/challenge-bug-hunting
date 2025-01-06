@@ -1,0 +1,5 @@
+Teste1;Descrição;1.0;Filme;29/02/2000
+Teste2;Descrição teste2;2.0;filme;27/12/2024
+Video3;Testando edição;1.0;filme;03/01/2024
+Video1;Testando filtro categoria;2.0;Série;03/02/2024
+Video2;Testando filtro categoria;5.0;Documentário;02/01/2025

@@ -1,32 +1,18 @@
-package repository;
+package util;
 
 import model.Video;
 
 import java.io.*;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.text.SimpleDateFormat;
 
-public class FileVideoRepository {
+public class FileHandler {
 
-    private final String filePath;
+    private String filePath;
 
-    public FileVideoRepository(String filePath) {
+    public FileHandler(String filePath) {
         this.filePath = filePath;
-        createFileIfNotExists();  // Chama o método para garantir que o arquivo exista
-    }
-
-    // Método para criar o arquivo caso ele não exista
-    private void createFileIfNotExists() {
-        File file = new File(filePath);
-        try {
-            if (!file.exists()) {
-                file.createNewFile();  // Cria o arquivo se não existir
-                System.out.println("Arquivo " + filePath + " criado com sucesso.");
-            }
-        } catch (IOException e) {
-            System.err.println("Erro ao criar o arquivo: " + e.getMessage());
-        }
     }
 
     public List<Video> loadVideos() {
@@ -35,12 +21,8 @@ public class FileVideoRepository {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(";");
-                if (data.length == 5) {
-                    Video video = new Video(data[0], data[1], Double.parseDouble(data[2]), data[3], data[4]);
-                    videos.add(video);
-                } else {
-                    System.err.println("Erro no formato da linha. Esperado 5 campos.");
-                }
+                Video video = new Video(data[0], data[1], Double.parseDouble(data[2]), data[3], data[4]);
+                videos.add(video);
             }
         } catch (IOException | NumberFormatException e) {
             System.err.println("Erro ao carregar vídeos: " + e.getMessage());

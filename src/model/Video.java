@@ -1,56 +1,85 @@
 package model;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Video {
-    private String titulo;
-    private String descricao;
-    private int duracao; // em minutos
-    private String categoria;
-    private Date dataPublicacao;
+    private String title;
+    private String description;
+    private double duration;
+    private String category;
+    private Date publicationDate;
 
-    public Video(String titulo, String descricao, int duracao, String categoria, Date dataPublicacao) {
-        this.titulo = titulo;
-        this.descricao = descricao;
-        this.duracao = duracao;
-        this.categoria = categoria;
-        this.dataPublicacao = dataPublicacao;
+
+    public Video(String title, String description, double duration, String category, String publicationDate) {
+        setTitle(title);
+        setDescription(description);
+        setDuration(duration);
+        setCategory(category);
+        setPublicationDate(publicationDate);
     }
 
-    public String getTitulo() {
-        return titulo;
+    // Getters e Setters
+    public String getTitle() {
+        return title;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public void setTitle(String title) {
+        if (title == null || title.trim().isEmpty()) {
+            throw new IllegalArgumentException("O título não pode estar vazio.");
+        }
+        this.title = title;
     }
 
-    public int getDuracao() {
-        return duracao;
+    public String getDescription() {
+        return description;
     }
 
-    public String getCategoria() {
-        return categoria;
+    public void setDescription(String description) {
+        if (description == null || description.trim().isEmpty()) {
+            throw new IllegalArgumentException("A descrição não pode estar vazia.");
+        }
+        this.description = description;
     }
 
-    public Date getDataPublicacao() {
-        return dataPublicacao;
+    public double getDuration() {
+        return duration;
+    }
+
+    public void setDuration(double duration) {
+        if (duration <= 0) {
+            throw new IllegalArgumentException("A duração deve ser um número positivo.");
+        }
+        this.duration = duration;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        if (category == null || (!category.equalsIgnoreCase("Filme") && !category.equalsIgnoreCase("Série") && !category.equalsIgnoreCase("Documentário"))) {
+            throw new IllegalArgumentException("Categoria inválida. Use 'Filme', 'Série' ou 'Documentário'.");
+        }
+        this.category = category;
+    }
+
+
+    public Date getPublicationDate() {
+        return publicationDate;
+    }
+
+    public void setPublicationDate(String publicationDate) {
+        try {
+            this.publicationDate = new SimpleDateFormat("dd/MM/yyyy").parse(publicationDate);
+        } catch (ParseException e) {
+            throw new IllegalArgumentException("Data inválida. Use o formato dd/MM/yyyy.");
+        }
     }
 
     @Override
     public String toString() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return titulo + ";" + descricao + ";" + duracao + ";" + categoria + ";" + sdf.format(dataPublicacao);
-    }
-
-    public static Video fromString(String linha) {
-        try {
-            String[] partes = linha.split(";");
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            return new Video(partes[0], partes[1], Integer.parseInt(partes[2]), partes[3], sdf.parse(partes[4]));
-        } catch (Exception e) {
-            return null; // Ignora erros de parsing
-        }
+        return "Vídeo [Título=" + title + ", Descrição=" + description + ", Duração=" + duration + " minutos, Categoria=" + category + ", Data de Publicação=" + publicationDate + "]";
     }
 }
