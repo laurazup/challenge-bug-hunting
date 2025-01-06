@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DateService {
+    public static final int ERROR_NOT_FOUND = -1;
     static SimpleDateFormat simpleDateFormat;
     ParsePosition parsePosition;
 
@@ -22,7 +23,7 @@ public class DateService {
         return simpleDateFormat.format(date);
     }
 
-    public Date stringToDate(String dateFormat){
+    public Date stringToDate(String dateFormat) {
         Date date = null;
         parsePosition.setIndex(0);
 
@@ -36,11 +37,11 @@ public class DateService {
     }
 
     public boolean getError() {
-        return parsePosition.getErrorIndex() != -1;
+        return parsePosition.getErrorIndex() != ERROR_NOT_FOUND;
     }
 
     public void resetErrorIndex() {
-        parsePosition.setErrorIndex(-1);
+        parsePosition.setErrorIndex(ERROR_NOT_FOUND);
     }
 
 }
