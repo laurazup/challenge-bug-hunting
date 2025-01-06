@@ -130,17 +130,7 @@ public class ValidateService {
         do {
             System.out.print("Digite a data de publicação no formato (dd/MM/yyyy): ");
 
-            while (!scanner.hasNext("\\d\\d/\\d\\d/\\d\\d\\d\\d")) {
-                System.err.print("A entrada digitada não está no formato (dd/MM/yyyy): ");
-                if (scanner.hasNextLine()) {
-                    scanner.nextLine();
-                }
-                if (scanner.hasNext()) {
-                    scanner.next();
-                }
-            }
-
-            publicationDate = dateService.stringToDate(scanner.next());
+            publicationDate = dateService.stringToDate(validateDateFormat());
             if (dateService.getError()) {
                 System.err.println("A data informada é inválida!");
                 dateService.resetErrorIndex();
@@ -151,6 +141,24 @@ public class ValidateService {
         } while (isNotValid);
 
         return publicationDate;
+    }
+
+    private String validateDateFormat() {
+        String inputDate;
+
+        while (!scanner.hasNext("\\d\\d/\\d\\d/\\d\\d\\d\\d")) {
+            System.err.print("A entrada digitada não está no formato (dd/MM/yyyy): ");
+            if (scanner.hasNextLine()) {
+                scanner.nextLine();
+            }
+            if (scanner.hasNext()) {
+                scanner.next();
+            }
+        }
+
+        inputDate = scanner.next();
+
+        return inputDate;
     }
 
     public void close() {
