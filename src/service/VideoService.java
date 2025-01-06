@@ -1,7 +1,6 @@
 package service;
 
 import model.Video;
-
 import java.util.List;
 
 public interface VideoService {
