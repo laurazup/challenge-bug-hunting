@@ -1,4 +1,5 @@
 # Boas-vindas ao repositório do Bug Hunting! 🐛🔍
+
 # Sistema de Gerenciamento de Vídeos - Refatoração e Boas Práticas 🎥📂
 
 Você já usa o GitHub diariamente para desenvolver os exercícios e os projetos, certo? Agora, para desenvolver este desafio, você deverá seguir as instruções aqui descritas para conseguir resolvê-lo. Se tiver qualquer dúvida, nos envie pelo chat! #vamosquevamos 🚀
