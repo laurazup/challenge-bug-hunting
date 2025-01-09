@@ -19,24 +19,41 @@ public class FileVideoRepository implements VideoRepository {
             bw.write(video.toString());
             bw.newLine();
         } catch (IOException e) {
-            // Ignorar erros por enquanto
+            throw new RuntimeException("Erro ao salvar o vídeo no arquivo: " + e.getMessage());
         }
     }
 
     @Override
     public List<Video> findAll() {
         List<Video> videos = new ArrayList<>();
+        if (!file.exists()) {
+            return videos; // Retorna lista vazia se o arquivo não existir
+        }
+
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) {
-                Video video = Video.fromString(line);
-                if (video != null) {
-                    videos.add(video);
-                }
+                videos.add(Video.fromString(line));
             }
         } catch (IOException e) {
-            // Ignorar erros por enquanto
+            throw new RuntimeException("Erro ao ler os vídeos do arquivo: " + e.getMessage());
         }
         return videos;
+    }
+
+    /**
+     * Salva uma lista completa de vídeos no arquivo, sobrescrevendo o conteúdo existente.
+     *
+     * @param videos Lista de vídeos a ser salva.
+     */
+    public void saveAll(List<Video> videos) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+            for (Video video : videos) {
+                bw.write(video.toString());
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Erro ao salvar a lista de vídeos no arquivo: " + e.getMessage());
+        }
     }
 }
